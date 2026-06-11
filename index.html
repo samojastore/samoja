@@ -132,4 +132,51 @@
 
         /* Gaya baru untuk balon chat (bubble chat) biar estetik */
         .msg-line { margin: 8px 0; padding: 6px 10px; border-radius: 6px; font-size: 13px; max-width: 85%; word-wrap: break-word; }
-        .msg-anda { background: #e2f0cb; margin
+        .msg-anda { background: #e2f0cb; margin-left: auto; text-align: right; color: #333; }
+        .msg-admin { background: #ffffff; border: 1px solid #ddd; margin-right: auto; text-align: left; color: #333; }
+
+        /* ======================================================== */
+        /* PERBAIKAN BARU: ATURAN KHUSUS BIAR HP BISA 2 KOLOM      */
+        /* ======================================================== */
+        @media screen and (max-width: 600px) {
+            #koleksi {
+                padding: 60px 10px;
+            }
+            .produk-container {
+                gap: 12px;
+                padding: 0 5px;
+            }
+            .produk {
+                width: calc(50% - 6px); 
+                border-radius: 10px;
+            }
+            .produk h3 {
+                font-size: 15px;
+                margin: 10px 0 5px;
+            }
+            .produk p {
+                font-size: 13px;
+                margin: 0;
+            }
+            .produk a {
+                margin: 10px 5px;
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="hero">
+    <h1>SAMOJA</h1>
+    <p>
+        Local Streetwear Brand<br>Designed for Everyday Confidence
+    </p>
+    
+    <a href="#koleksi">
+        <button>Lihat Koleksi</button>
+    </a>
+    
+    <a href="
