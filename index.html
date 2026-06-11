@@ -135,9 +135,7 @@
         .msg-anda { background: #e2f0cb; margin-left: auto; text-align: right; color: #333; }
         .msg-admin { background: #ffffff; border: 1px solid #ddd; margin-right: auto; text-align: left; color: #333; }
 
-        /* ======================================================== */
-        /* PERBAIKAN BARU: ATURAN KHUSUS BIAR HP BISA 2 KOLOM      */
-        /* ======================================================== */
+        /* Aturan khusus HP biar bisa 2 kolom */
         @media screen and (max-width: 600px) {
             #koleksi {
                 padding: 60px 10px;
@@ -179,4 +177,150 @@
         <button>Lihat Koleksi</button>
     </a>
     
-    <a href="
+    <a href="https://wa.me/6289512890115" target="_blank" rel="noopener noreferrer">
+        <button>Whatsapp</button>
+    </a>
+    
+    <a href="https://www.instagram.com/samojaapprl/" target="_blank" rel="noopener noreferrer">
+        <button>Instagram</button>
+    </a>
+</div>
+
+<section id="koleksi">
+
+    <h2>KOLEKSI SAMOJA</h2>
+
+    <div class="produk-container">
+
+        <div class="produk">
+            <img src="Product/Eren Yeager/Belakang.jpg" alt="Eren Yeager">
+            <img src="Product/Eren Yeager/Depan.jpg" alt="Eren Yeager">
+            <h3>Eren Yeager</h3>
+            <p>Rp 99.000</p>
+            <a href="https://wa.me/6289512890115" target="_blank" rel="noopener noreferrer">
+                Pesan Sekarang
+            </a>
+        </div>
+
+        <div class="produk">
+            <img src="Product/RX-78-02 Gundam/Belakang.jpg" alt="RX-78-02 Gundam">
+            <img src="Product/RX-78-02 Gundam/Depan.jpg" alt="RX-78-02 Gundam">
+            <h3>RX-78-02 Gundam</h3>
+            <p>Rp 99.000</p>
+            <a href="https://wa.me/6289512890115" target="_blank" rel="noopener noreferrer">
+                Pesan Sekarang
+            </a>
+        </div>
+
+        <div class="produk">
+            <img src="Product/Jiraiya/Belakang.jpg" alt="Jiraiya">
+            <img src="Product/Jiraiya/Depan.jpg" alt="Jiraiya">
+            <h3>Jiraiya</h3>
+            <p>Rp 99.000</p>
+            <a href="https://wa.me/6289512890115" target="_blank" rel="noopener noreferrer">
+                Pesan Sekarang
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<button id="tombol-chat" onclick="toggleChat()">💬 Chat Dengan Kami</button>
+
+<div id="wadah-chat" class="tersembunyi">
+    <div id="header-chat">
+        <h4 id="judul-chat">Live Chat Support</h4>
+        <button onclick="toggleChat()">X</button>
+    </div>
+    <div id="area-pesan">
+        <div style="padding:10px; text-align:center; color:#666; font-size:12px;" id="info-init">
+            Silakan ketik nama Anda untuk memulai obrolan privat dengan admin.
+        </div>
+    </div>
+    <div id="input-grup">
+        <input type="text" id="teks-chat" placeholder="Masukkan nama Anda..." onkeypress="cekEnter(event)" />
+        <button onclick="kirimPesan()">Kirim</button>
+    </div>
+</div>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+<script>
+  const socket = io("http://localhost:3000");
+  
+  let sudahRegistrasi = false;
+  let namaUser = "";
+
+  socket.on('connect', () => {
+      console.log('Terhubung ke jaringan server chat privat SAMOJA.');
+  });
+
+  function toggleChat() {
+      const kotakChat = document.getElementById('wadah-chat');
+      kotakChat.classList.toggle('tersembunyi');
+  }
+
+  function kirimPesan() {
+      const input = document.getElementById('teks-chat');
+      const nilai = input.value.trim();
+      
+      if(nilai === '') return;
+
+      if (!sudahRegistrasi) {
+          namaUser = nilai;
+          socket.emit('registrasi-pelanggan', { nama: namaUser });
+          sudahRegistrasi = true;
+          
+          const infoInit = document.getElementById('info-init');
+          if(infoInit) infoInit.remove();
+          
+          document.getElementById('judul-chat').textContent = "Chat: " + namaUser;
+          input.placeholder = "Ketik pesan...";
+          input.value = '';
+          
+          tampilkanPesanSistem("Sistem", "Selamat datang <b>" + namaUser + "</b>, silakan kirim pesan Anda. Admin SAMOJA akan segera membalas.");
+      } else {
+          socket.emit('kirim-pesan-client', nilai);
+          input.value = '';
+      }
+  }
+
+  function cekEnter(event) {
+      if (event.key === "Enter") {
+          kirimPesan();
+      }
+  }
+
+  function tampilkanPesanSistem(pengirim, teks) {
+      const areaPesan = document.getElementById('area-pesan');
+      const elemenPesan = document.createElement('div');
+      elemenPesan.className = "msg-line msg-admin";
+      elemenPesan.innerHTML = "<strong>" + pengirim + ":</strong> " + teks;
+      areaPesan.appendChild(elemenPesan);
+      areaPesan.scrollTop = areaPesan.scrollHeight;
+  }
+
+  socket.on('pesan-masuk', (data) => {
+      const areaPesan = document.getElementById('area-pesan');
+      const elemenPesan = document.createElement('div');
+      
+      if (data.pengirim === 'Anda') {
+          elemenPesan.className = "msg-line msg-anda";
+          elemenPesan.innerHTML = amankanTeksHtml(data.teks);
+      } else {
+          elemenPesan.className = "msg-line msg-admin";
+          elemenPesan.innerHTML = "<strong>" + data.pengirim + ":</strong> " + amankanTeksHtml(data.teks);
+      }
+      
+      areaPesan.appendChild(elemenPesan);
+      areaPesan.scrollTop = areaPesan.scrollHeight;
+  });
+
+  function amankanTeksHtml(teks) {
+      return teks.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+</script>
+
+</body>
+</html>
