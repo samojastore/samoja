@@ -247,8 +247,8 @@
 <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
 
 <script>
-  // SUDAH DISAMAKAN MENGGUNAKAN IP 127.0.0.1 BIAR SATU JALUR DENGAN ADMIN
-  const socket = io("http://127.0.0.1:3000");
+  // JALUR DIUBAH UTK LOCALHOST BIAR BISA DIBUKA LANGSUNG LEWAT FILE EXPLORER (TANPA LIVE SERVER)
+  const socket = io("http://localhost:3000");
   
   let sudahRegistrasi = false;
   let namaUser = "";
