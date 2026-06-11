@@ -113,7 +113,7 @@
             flex-direction: column;
             z-index: 9999;
             font-family: sans-serif;
-            color: black; /* Supaya teks di dalam kotak chat tidak berwarna putih mengikuti body */
+            color: black;
         }
 
         /* Menyembunyikan elemen */
@@ -129,6 +129,37 @@
         #input-grup { display: flex; padding: 10px; border-top: 1px solid #ddd; background: white; border-radius: 0 0 10px 10px; }
         #teks-chat { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
         #input-grup button { margin: 0 0 0 5px; padding: 8px 15px; font-size: 14px; background: #656769; color: white; }
+
+        /* ======================================================== */
+        /* PERBAIKAN BARU: ATURAN KHUSUS BIAR HP BISA 2 KOLOM      */
+        /* ======================================================== */
+        @media screen and (max-width: 600px) {
+            #koleksi {
+                padding: 60px 10px; /* Sedikit mempersempit padding section di HP */
+            }
+            .produk-container {
+                gap: 12px; /* Memperkecil jarak antar kotak produk agar muat berjejer */
+                padding: 0 5px;
+            }
+            .produk {
+                /* Mengkalkulasi lebar: 50% layar minus ruang untuk jarak gap */
+                width: calc(50% - 6px); 
+                border-radius: 10px; /* Sudut kotak disesuaikan biar pas di layar mini */
+            }
+            .produk h3 {
+                font-size: 15px; /* Menyesuaikan ukuran teks judul produk di HP */
+                margin: 10px 0 5px;
+            }
+            .produk p {
+                font-size: 13px; /* Menyesuaikan teks harga di HP */
+                margin: 0;
+            }
+            .produk a {
+                margin: 10px 5px;
+                padding: 8px 10px;
+                font-size: 12px; /* Mengecilkan tombol pesan di HP agar tidak meluber */
+            }
+        }
     </style>
 </head>
 
@@ -210,7 +241,7 @@
 <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
 
 <script>
-  // 1. KONEKSI KE SERVER LOKAL LAPTOP (Ubah 'localhost' ke alamat IP laptop Anda jika ingin ditest via HP)
+  // 1. KONEKSI KE SERVER LOKAL LAPTOP (Ganti 'localhost' ke IP laptop Anda jika dites dari HP)
   const socket = io("http://localhost:3000");
 
   socket.on('connect', () => {
