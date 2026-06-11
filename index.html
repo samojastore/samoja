@@ -2,42 +2,255 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Live Chat Sendiri</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMOJA</title>
     <style>
-        body { font-family: sans-serif; margin: 20px; }
-        #kotak-chat { border: 1px solid #ccc; height: 300px; overflow-y: scroll; padding: 10px; margin-bottom: 10px; }
-    </style>
-</head>
-<body>
-
-    <h2>Live Chat Room</h2>
-    <div id="kotak-chat"></div>
-    <input type="text" id="input-pesan" placeholder="Ketik pesan..." />
-    <button onclick="kirim()">Kirim</button>
-
-    <!-- Memanggil library socket.io client -->
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io();
-        const kotakChat = document.getElementById('kotak-chat');
-        const inputPesan = document.getElementById('input-pesan');
-
-        // Fungsi saat tombol kirim ditekan
-        function kirim() {
-            const pesan = inputPesan.value;
-            if(pesan) {
-                // Kirim event 'kirim-pesan' ke server
-                socket.emit('kirim-pesan', pesan);
-                inputPesan.value = '';
-            }
+        html{
+            scroll-behavior: smooth;
         }
 
-        // Mendengarkan kiriman dari server jika ada 'pesan-baru'
-        socket.on('pesan-baru', (msg) => {
-            const elemenPesan = document.createElement('p');
-            elemenPesan.textContent = msg;
-            kotakChat.appendChild(elemenPesan);
-        });
-    </script>
+        body{
+            margin:0;
+            font-family:Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            text-align:center;
+        }
+        
+        .hero{
+            height:100vh;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+        }
+
+        h1{
+            font-size:70px;
+            margin:0;
+        }
+
+        p{
+            font-size:20px;
+            color:#ccc;
+        }
+
+        button{
+            margin-top:20px;
+            padding:15px 30px;
+            border:none;
+            border-radius:10px;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+        #koleksi{
+            padding:100px 20px;
+        }
+
+        .produk-container{
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+
+        .produk{
+            width:300px;
+            background:#1a1a1a;
+            border-radius:15px;
+            overflow:hidden;
+        }
+
+        .produk img{
+            width:100%;
+        }
+
+        .produk h3{
+            margin:15px 0 10px;
+        }
+
+        .produk p{
+            color:#ccc;
+        }
+
+        .produk a{
+            display:inline-block;
+            margin:15px;
+            padding:10px 20px;
+            background:white;
+            color:black;
+            text-decoration:none;
+            border-radius:8px;
+        }
+
+        /* Tombol melayang di kanan bawah */
+        #tombol-chat {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            background-color: #656769;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            z-index: 9999;
+        }
+
+        /* Kotak chat melayang */
+        #wadah-chat {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 320px;
+            height: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            z-index: 9999;
+            font-family: sans-serif;
+            color: black; /* Supaya teks di dalam kotak chat tidak berwarna putih mengikuti body */
+        }
+
+        /* Menyembunyikan elemen */
+        .tersembunyi {
+            display: none !important;
+        }
+
+        /* Gaya area pesan internal */
+        #header-chat { background: #656769; color: white; padding: 10px; display: flex; justify-content: space-between; border-radius: 10px 10px 0 0; }
+        #header-chat h4 { margin: 0; }
+        #header-chat button { margin: 0; padding: 0 5px; font-size: 14px; background: transparent; color: white; }
+        #area-pesan { flex: 1; padding: 10px; overflow-y: auto; background: #f9f9f9; text-align: left; }
+        #input-grup { display: flex; padding: 10px; border-top: 1px solid #ddd; background: white; border-radius: 0 0 10px 10px; }
+        #teks-chat { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        #input-grup button { margin: 0 0 0 5px; padding: 8px 15px; font-size: 14px; background: #656769; color: white; }
+    </style>
+</head>
+
+<body>
+
+<div class="hero">
+    <h1>SAMOJA</h1>
+    <p>
+        Local Streetwear Brand<br>Designed for Everyday Confidence
+    </p>
+    
+    <a href="#koleksi">
+        <button>Lihat Koleksi</button>
+    </a>
+    
+    <a href="https://wa.me/6289512890115" target="_blank" rel="noopener noreferrer">
+        <button>Whatsapp</button>
+    </a>
+    
+    <a href="https://www.instagram.com/samojaapprl/" target="_blank" rel="noopener noreferrer">
+        <button>Instagram</button>
+    </a>
+</div>
+
+<section id="koleksi">
+
+    <h2>KOLEKSI SAMOJA</h2>
+
+    <div class="produk-container">
+
+        <div class="produk">
+            <img src="Product/Eren Yeager/Belakang.jpg" alt="Eren Yeager">
+            <img src="Product/Eren Yeager/Depan.jpg" alt="Eren Yeager">
+            <h3>Eren Yeager</h3>
+            <p>Rp 99.000</p>
+            <a href="https://wa.me/6289512890115" target="_blank" rel="noopener noreferrer">
+                Pesan Sekarang
+            </a>
+        </div>
+
+        <div class="produk">
+            <img src="Product/RX-78-02 Gundam/Belakang.jpg" alt="RX-78-02 Gundam">
+            <img src="Product/RX-78-02 Gundam/Depan.jpg" alt="RX-78-02 Gundam">
+            <h3>RX-78-02 Gundam</h3>
+            <p>Rp 99.000</p>
+            <a href="https://wa.me/6289512890115" target="_blank" rel="noopener noreferrer">
+                Pesan Sekarang
+            </a>
+        </div>
+
+        <div class="produk">
+            <img src="Product/Jiraiya/Belakang.jpg" alt="Jiraiya">
+            <img src="Product/Jiraiya/Depan.jpg" alt="Jiraiya">
+            <h3>Jiraiya</h3>
+            <p>Rp 99.000</p>
+            <a href="https://wa.me/6289512890115" target="_blank" rel="noopener noreferrer">
+                Pesan Sekarang
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<button id="tombol-chat" onclick="toggleChat()">💬 Chat Dengan Kami</button>
+
+<div id="wadah-chat" class="tersembunyi">
+    <div id="header-chat">
+        <h4>Live Chat Support</h4>
+        <button onclick="toggleChat()">X</button>
+    </div>
+    <div id="area-pesan"></div>
+    <div id="input-grup">
+        <input type="text" id="teks-chat" placeholder="Ketik pesan..." onkeypress="cekEnter(event)" />
+        <button onclick="kirimPesan()">Kirim</button>
+    </div>
+</div>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+<script>
+  // 1. KONEKSI KE SERVER LOKAL LAPTOP (Ubah 'localhost' ke alamat IP laptop Anda jika ingin ditest via HP)
+  const socket = io("http://localhost:3000");
+
+  socket.on('connect', () => {
+      console.log('Hore! Website utama berhasil terhubung ke server chat.');
+  });
+
+  // Fungsi buka/tutup jendela obrolan
+  function toggleChat() {
+      const kotakChat = document.getElementById('wadah-chat');
+      kotakChat.classList.toggle('tersembunyi');
+  }
+
+  // Fungsi kirim data chat dari website ke server backend
+  function kirimPesan() {
+      const input = document.getElementById('teks-chat');
+      const pesan = input.value;
+      if(pesan.trim() !== '') {
+          socket.emit('kirim-pesan', pesan);
+          input.value = '';
+      }
+  }
+
+  // Fungsi tambahan: Supaya pengunjung bisa tekan tombol 'Enter' di keyboard untuk kirim chat
+  function cekEnter(event) {
+      if (event.key === "Enter") {
+          kirimPesan();
+      }
+  }
+
+  // Mendengarkan respon server jika ada pesan masuk agar tampil di chat box
+  socket.on('pesan-baru', (msg) => {
+      const areaPesan = document.getElementById('area-pesan');
+      const elemenPesan = document.createElement('p');
+      elemenPesan.style.margin = "5px 0";
+      elemenPesan.style.color = "black";
+      elemenPesan.textContent = msg;
+      areaPesan.appendChild(elemenPesan);
+      areaPesan.scrollTop = areaPesan.scrollHeight; // Auto gulung ke chat paling baru
+  });
+</script>
+
 </body>
 </html>
