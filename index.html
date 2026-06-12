@@ -34,6 +34,7 @@
         @keyframes ngetikBaris2 { from { width: 0; border-color: white; } to { width: 100%; border-color: white; } }
         @keyframes kedipKursor { 50% { border-color: transparent; } }   
         p{ font-size:20px; color:#ccc; }
+        
         .hero button{ margin-top:30px; padding:16px 36px; border:none; border-radius:999px; font-size:16px; font-weight:700; background:white; color:black; cursor:pointer; transition:.3s; }
         .hero button:hover{ transform:translateY(-3px); background:#eaeaea; }
         .kontak-melayang { position: fixed; bottom: 25px; right: 25px; display: flex; flex-direction: column-reverse; gap: 12px; z-index: 9999; }
@@ -87,6 +88,8 @@
         <span class="efek-ngetik baris-2">Designed for Everyday Confidence</span>
     </p1>
     <a href="#koleksi"><button>Lihat Koleksi</button></a>
+    <a href="custom.html">
+    <button>Kustomisasi</button> </a>
 </div>
 
 <div class="kontak-melayang">
@@ -154,6 +157,12 @@
             logo.classList.remove('logo-muncul');
         }
     });
+</script>
+
+<script>
+document.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+});
 </script>
 
 </body>

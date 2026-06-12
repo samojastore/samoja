@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kustomisasi - SAMOJA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arial&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+</head>
+
+    <style>
+        html{
+    scroll-behavior:smooth;
+    height:100%;
+}
+
+        body{ margin:0; min-height:100vh; display:flex; flex-direction:column; font-family:Arial, sans-serif; background-color:#111; color:white; text-align:center; background-image:linear-gradient( rgba(0,0,0,.50),  rgba(0,0,0,.50)  ), url('background/background.png'); background-size:cover; background-position:center; background-attachment:fixed; }
+        h1{ margin-bottom:20px; }
+        .konten-custom p{ font-size:20px; color:#ccc; max-width:700px; line-height:1.8; }
+        .konten-custom a{ display:inline-block;  margin-top:20px;  padding:14px 28px;  background:white;  color:black;  text-decoration:none; border-radius:999px; font-weight:bold; transition:.3s; }
+        .konten-custom a:hover{ transform:translateY(-3px); background:#e0e0e0; }
+        p{ font-size:20px; color:#ccc; }
+        .form-custom{
+    width:100%;
+    max-width:600px;
+    margin:40px auto;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    text-align:left;
+}
+
+.form-custom label{
+    font-weight:bold;
+}
+
+.form-custom input,
+.form-custom select,
+.form-custom textarea{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#1f1f1f;
+    color:white;
+    box-sizing:border-box;
+}
+
+.form-custom h3{
+    margin-top:20px;
+    text-align:center;
+}
+
+.ukuran-grid{
+    display:grid;
+    grid-template-columns:80px 1fr;
+    gap:10px;
+    align-items:center;
+}
+
+.total-box{
+    margin-top:10px;
+    padding:15px;
+    background:#181818;
+    border-radius:10px;
+    font-weight:bold;
+    text-align:center;
+}
+
+#btn-wa{
+    margin-top:20px;
+    padding:16px;
+    border:none;
+    border-radius:999px;
+    background:#25D366;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#btn-wa:hover{
+    transform:translateY(-3px);
+}
+        .samoja-footer { background-color: #000; padding: 60px 40px; border-top: 1px solid #222; margin-top: 50px; }
+        .footer-container { display: flex; justify-content: space-between; align-items: flex-start; max-width: 1200px; margin: 0 auto; }
+        .footer-menu { list-style: none; padding: 0; margin: 0 0 20px 0; text-align: left; }
+        .footer-menu li { padding: 8px 0; border-bottom: 1px solid #222; width: 250px; }
+        .footer-menu li a { color: #fff; text-decoration: none; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
+        .copyright { color: #fff; font-size: 12px; text-align: left; margin-top: 10px; }
+        .footer-kanan { text-align: right; }
+        .footer-logo { font-family: 'Arial', cursive; font-size: 40px; letter-spacing: 4px; margin: 0; color: #fff; letter-spacing: 2px; }
+        .find-us { color: #fff; font-size: 11px; font-weight: bold; margin: 0 0 15px 0; letter-spacing: 2px; }
+        .sosmed-icons { display: flex; gap: 20px; justify-content: flex-end; }
+        .sosmed-icons a { color: #fff; font-size: 22px; transition: 0.3s; }
+        .sosmed-icons a:hover { color: #888; transform: translateY(-3px); }
+        @media screen and (max-width: 768px) {
+            .produk-container{ grid-template-columns:repeat(3,1fr); gap:20px; }
+            .footer-container { flex-direction: column; text-align: center; gap: 40px; }
+            .footer-kiri, .footer-kanan { text-align: center; width: 100%; }
+            .footer-menu li { width: 100%; border: none; padding: 10px 0; }
+            .sosmed-icons { justify-content: center; }
+            .copyright { text-align: center; } }
+        .konten-custom{
+    flex:1;  display:flex; flex-direction:column; justify-content:center; align-items:center;  padding:40px 20px; }
+    </style>
+
+<body>
+
+   <main class="konten-custom">
+
+        <h1>Kustomisasi Produk</h1>
+            <p>Upload desainmu dan konsultasikan kebutuhanmu bersama tim SAMOJA.</p>
+            
+            <div class="form-custom">
+
+    <label>Nama</label>
+    <input type="text" id="nama" placeholder="Masukkan nama">
+
+    <label>No. HP</label>
+    <input type="tel" id="hp" placeholder="08xxxxxxxxxx">
+
+    <label>Code Pesanan</label>
+    <input type="text" id="kode" readonly>
+
+    <label>Jenis Produk</label>
+    <select id="produk">
+        <option>Kaos Oversize</option>
+        <option>Kaos Reguler</option>
+        <option>Hoodie</option>
+        <option>Crewneck</option>
+        <option>Jersey</option>
+        <option>Lainnya</option>
+    </select>
+
+    <label>Bahan</label>
+    <select id="bahan">
+        <option>Cotton 24'S</option>
+        <option>Cotton 30'S</option>
+    </select>
+
+    <label>Warna</label>
+    <input type="text" id="warna" placeholder="Contoh: Hitam">
+
+    <h3>Detail Ukuran</h3>
+
+    <div class="ukuran-grid">
+        <div>S</div>
+        <input type="number" min="0" value="0" class="qty">
+
+        <div>M</div>
+        <input type="number" min="0" value="0" class="qty">
+
+        <div>L</div>
+        <input type="number" min="0" value="0" class="qty">
+
+        <div>XL</div>
+        <input type="number" min="0" value="0" class="qty">
+
+        <div>XXL</div>
+        <input type="number" min="0" value="0" class="qty">
+    </div>
+
+    <div class="total-box">
+        Total : <span id="total">0</span> pcs
+    </div>
+
+    <label>Upload Design</label>
+    <input type="file" id="design">
+
+    <label>Catatan Tambahan</label>
+    <textarea
+        id="catatan"
+        rows="5"
+        placeholder="Tulis ukuran sablon Depan dan Belakang
+contoh : 
+Depan = Logo (Dada tengah), 
+Belakang = Fullback"
+    ></textarea>
+
+    <button id="btn-wa">
+        Kirim ke WhatsApp
+    </button>
+
+</div>
+            
+    </main>
+
+    <footer class="samoja-footer">
+    <div class="footer-container">
+        <div class="footer-kiri">
+            <ul class="footer-menu">
+                <li><a href="#">KEBIJAKAN PENGEMBALIAN</a></li>
+                <li><a href="#">CARA PEMESANAN</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">KONFIRMASI PEMESANAN</a></li>
+            </ul>
+            <p class="copyright">Copyright &copy; 2025 - 2026 Samoja Apparel.</p>
+        </div>
+        <div class="footer-kanan">
+            <h3 class="footer-logo">SAMOJA</h3>
+            <p class="find-us">FIND US ON</p>
+            <div class="sosmed-icons">
+                <a href="https://www.instagram.com/samojaapprl/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@samojaapprl?_r=1&_t=ZS-978zdmtQLae" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://shopee.co.id/samojaapparel" target="_blank"><i class="fas fa-shopping-bag"></i></a>
+                <a href="https://wa.me/6289512890115" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+
+// Auto Generate Code
+function generateCode(){
+
+    const now = new Date();
+
+    const tanggal =
+        now.getFullYear() +
+        String(now.getMonth()+1).padStart(2,'0') +
+        String(now.getDate()).padStart(2,'0');
+
+    const random =
+        Math.random()
+        .toString(36)
+        .substring(2,8)
+        .toUpperCase();
+
+    document.getElementById("kode").value =
+        `SMJ-${tanggal}-${random}`;
+}
+
+generateCode();
+
+
+// Hitung Total Otomatis
+
+const qtyInputs =
+document.querySelectorAll('.qty');
+
+qtyInputs.forEach(input => {
+
+    input.addEventListener('input', () => {
+
+        let total = 0;
+
+        qtyInputs.forEach(item => {
+            total += Number(item.value);
+        });
+
+        document.getElementById('total').textContent =
+        total;
+
+    });
+
+});
+
+
+// Kirim WhatsApp
+
+document
+.getElementById("btn-wa")
+.addEventListener("click", function(){
+
+    const nama =
+    document.getElementById("nama").value;
+
+    const hp =
+    document.getElementById("hp").value;
+
+    const kode =
+    document.getElementById("kode").value;
+
+    const produk =
+    document.getElementById("produk").value;
+
+    const bahan =
+    document.getElementById("bahan").value;
+
+    const warna =
+    document.getElementById("warna").value;
+
+    const catatan =
+    document.getElementById("catatan").value;
+
+    const ukuran =
+    document.querySelectorAll(".qty");
+
+    const size = ["S","M","L","XL","XXL"];
+
+    let detailUkuran = "";
+
+    ukuran.forEach((item,index)=>{
+
+        if(item.value > 0){
+
+            detailUkuran +=
+            `${size[index]} : ${item.value} pcs\n`;
+
+        }
+    
+    const warna =
+    document.getElementById("warna").value;
+
+    });
+
+    const pesan =
+`Halo SAMOJA
+
+Code: ${kode}
+
+Nama: ${nama}
+No. HP: ${hp}
+
+Jenis Produk: ${produk}
+Bahan: ${bahan}
+Warna: ${warna}
+
+Detail Ukuran:
+${detailUkuran}
+
+Total:
+${document.getElementById('total').textContent} pcs
+
+Catatan:
+${catatan}
+
+Saya akan mengirim file desain melalui chat ini.`;
+
+    window.open(
+    `https://wa.me/6289512890115?text=${encodeURIComponent(pesan)}`,
+    "_blank");
+
+});
+
+</script>
+
+<script>
+document.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+});
+</script>
+
+</body>
+</html>
