@@ -84,57 +84,6 @@
             border-radius:8px;
         }
 
-        /* Tombol melayang di kanan bawah */
-        #tombol-chat {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 12px 20px;
-            background-color: #656769;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            z-index: 9999;
-        }
-
-        /* Kotak chat melayang */
-        #wadah-chat {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            width: 320px;
-            height: 400px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            display: flex;
-            flex-direction: column;
-            z-index: 9999;
-            font-family: sans-serif;
-            color: black;
-        }
-
-        /* Menyembunyikan elemen */
-        .tersembunyi {
-            display: none !important;
-        }
-
-        /* Gaya area pesan internal */
-        #header-chat { background: #656769; color: white; padding: 10px; display: flex; justify-content: space-between; border-radius: 10px 10px 0 0; }
-        #header-chat h4 { margin: 0; }
-        #header-chat button { margin: 0; padding: 0 5px; font-size: 14px; background: transparent; color: white; }
-        #area-pesan { flex: 1; padding: 10px; overflow-y: auto; background: #f9f9f9; text-align: left; }
-        #input-grup { display: flex; padding: 10px; border-top: 1px solid #ddd; background: white; border-radius: 0 0 10px 10px; }
-        #teks-chat { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
-        #input-grup button { margin: 0 0 0 5px; padding: 8px 15px; font-size: 14px; background: #656769; color: white; }
-
-        /* Gaya baru untuk balon chat (bubble chat) biar estetik */
-        .msg-line { margin: 8px 0; padding: 6px 10px; border-radius: 6px; font-size: 13px; max-width: 85%; word-wrap: break-word; }
-        .msg-anda { background: #e2f0cb; margin-left: auto; text-align: right; color: #333; }
-        .msg-admin { background: #ffffff; border: 1px solid #ddd; margin-right: auto; text-align: left; color: #333; }
-
         /* Aturan khusus HP biar bisa 2 kolom */
         @media screen and (max-width: 600px) {
             #koleksi {
@@ -196,7 +145,7 @@
             <img src="Product/Eren Yeager/Belakang.jpg" alt="Eren Yeager">
             <img src="Product/Eren Yeager/Depan.jpg" alt="Eren Yeager">
             <h3>Eren Yeager</h3>
-            <p>Rp 99.000</p>
+            <p>Rp 89.000</p>
             <a href="https://wa.me/6289512890115" target="_blank" rel="noopener noreferrer">
                 Pesan Sekarang
             </a>
@@ -206,7 +155,7 @@
             <img src="Product/RX-78-02 Gundam/Belakang.jpg" alt="RX-78-02 Gundam">
             <img src="Product/RX-78-02 Gundam/Depan.jpg" alt="RX-78-02 Gundam">
             <h3>RX-78-02 Gundam</h3>
-            <p>Rp 99.000</p>
+            <p>Rp 89.000</p>
             <a href="https://wa.me/6289512890115" target="_blank" rel="noopener noreferrer">
                 Pesan Sekarang
             </a>
@@ -216,7 +165,7 @@
             <img src="Product/Jiraiya/Belakang.jpg" alt="Jiraiya">
             <img src="Product/Jiraiya/Depan.jpg" alt="Jiraiya">
             <h3>Jiraiya</h3>
-            <p>Rp 99.000</p>
+            <p>Rp 89.000</p>
             <a href="https://wa.me/6289512890115" target="_blank" rel="noopener noreferrer">
                 Pesan Sekarang
             </a>
@@ -225,103 +174,6 @@
     </div>
 
 </section>
-
-<button id="tombol-chat" onclick="toggleChat()">💬 Chat Dengan Kami</button>
-
-<div id="wadah-chat" class="tersembunyi">
-    <div id="header-chat">
-        <h4 id="judul-chat">Live Chat Support</h4>
-        <button onclick="toggleChat()">X</button>
-    </div>
-    <div id="area-pesan">
-        <div style="padding:10px; text-align:center; color:#666; font-size:12px;" id="info-init">
-            Silakan ketik nama Anda untuk memulai obrolan privat dengan admin.
-        </div>
-    </div>
-    <div id="input-grup">
-        <input type="text" id="teks-chat" placeholder="Masukkan nama Anda..." onkeypress="cekEnter(event)" />
-        <button onclick="kirimPesan()">Kirim</button>
-    </div>
-</div>
-
-<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
-
-<script>
-  // JALUR DIUBAH UTK LOCALHOST BIAR BISA DIBUKA LANGSUNG LEWAT FILE EXPLORER (TANPA LIVE SERVER)
-  const socket = io("http://localhost:3000");
-  
-  let sudahRegistrasi = false;
-  let namaUser = "";
-
-  socket.on('connect', () => {
-      console.log('Terhubung ke jaringan server chat privat SAMOJA.');
-  });
-
-  function toggleChat() {
-      const kotakChat = document.getElementById('wadah-chat');
-      kotakChat.classList.toggle('tersembunyi');
-  }
-
-  function kirimPesan() {
-      const input = document.getElementById('teks-chat');
-      const nilai = input.value.trim();
-      
-      if(nilai === '') return;
-
-      if (!sudahRegistrasi) {
-          namaUser = nilai;
-          socket.emit('registrasi-pelanggan', { nama: namaUser });
-          sudahRegistrasi = true;
-          
-          const infoInit = document.getElementById('info-init');
-          if(infoInit) infoInit.remove();
-          
-          document.getElementById('judul-chat').textContent = "Chat: " + namaUser;
-          input.placeholder = "Ketik pesan...";
-          input.value = '';
-          
-          tampilkanPesanSistem("Sistem", "Selamat datang <b>" + namaUser + "</b>, silakan kirim pesan Anda. Admin SAMOJA akan segera membalas.");
-      } else {
-          socket.emit('kirim-pesan-client', nilai);
-          input.value = '';
-      }
-  }
-
-  function cekEnter(event) {
-      if (event.key === "Enter") {
-          kirimPesan();
-      }
-  }
-
-  function tampilkanPesanSistem(pengirim, teks) {
-      const areaPesan = document.getElementById('area-pesan');
-      const elemenPesan = document.createElement('div');
-      elemenPesan.className = "msg-line msg-admin";
-      elemenPesan.innerHTML = "<strong>" + pengirim + ":</strong> " + teks;
-      areaPesan.appendChild(elemenPesan);
-      areaPesan.scrollTop = areaPesan.scrollHeight;
-  }
-
-  socket.on('pesan-masuk', (data) => {
-      const areaPesan = document.getElementById('area-pesan');
-      const elemenPesan = document.createElement('div');
-      
-      if (data.pengirim === 'Anda') {
-          elemenPesan.className = "msg-line msg-anda";
-          elemenPesan.innerHTML = amankanTeksHtml(data.teks);
-      } else {
-          elemenPesan.className = "msg-line msg-admin";
-          elemenPesan.innerHTML = "<strong>" + data.pengirim + ":</strong> " + amankanTeksHtml(data.teks);
-      }
-      
-      areaPesan.appendChild(elemenPesan);
-      areaPesan.scrollTop = areaPesan.scrollHeight;
-  });
-
-  function amankanTeksHtml(teks) {
-      return teks.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  }
-</script>
 
 </body>
 </html>
