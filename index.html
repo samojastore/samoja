@@ -22,9 +22,9 @@
             pointer-events: none;
         }
         .logo-muncul { opacity: 1 !important; }
-
-        .hero{ height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; }
-        h1{ font-size:70px; margin:0; text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.9); overflow: hidden; animation: sliceMuncul 3s cubic-bezier(0.19, 1, 0.22, 1) forwards; opacity: 0; transform: translateY(50px); }
+        h1{ font-size: clamp(50px, 10vw, 90px); letter-spacing: 4px; margin:0; text-shadow:0 4px 20px rgba(0,0,0,.7); opacity:0; transform:translateY(50px); animation:sliceMuncul 3s cubic-bezier(0.19,1,0.22,1) forwards; }
+        .hero{ min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:20px; }
+        
         @keyframes sliceMuncul { to { opacity: 1; transform: translateY(0); } }
         p1{ display: block; font-size: 20px; color: #ccc; font-family: monospace; margin-top: 10px; }
         .efek-ngetik { display: inline-block; white-space: nowrap; overflow: hidden; border-right: 3px solid transparent; width: 0; }
@@ -34,8 +34,8 @@
         @keyframes ngetikBaris2 { from { width: 0; border-color: white; } to { width: 100%; border-color: white; } }
         @keyframes kedipKursor { 50% { border-color: transparent; } }   
         p{ font-size:20px; color:#ccc; }
-        .hero button{ margin-top:20px; padding:15px 30px; border:none; border-radius:10px; font-size:18px; font-weight: bold; background: white; color: black; cursor:pointer; transition: 0.3s ease; }
-        .hero button:hover { background-color: #ccc; transform: scale(1.05); }
+        .hero button{ margin-top:30px; padding:16px 36px; border:none; border-radius:999px; font-size:16px; font-weight:700; background:white; color:black; cursor:pointer; transition:.3s; }
+        .hero button:hover{ transform:translateY(-3px); background:#eaeaea; }
         .kontak-melayang { position: fixed; bottom: 25px; right: 25px; display: flex; flex-direction: column-reverse; gap: 12px; z-index: 9999; }
         .kontak-melayang a { text-decoration: none; }
         .kontak-melayang button { margin: 0; padding: 12px 24px; border: none; border-radius: 30px; font-size: 14px; font-weight: bold; color: white; cursor: pointer; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4); transition: all 0.3s ease; width: 130px; }
@@ -45,13 +45,13 @@
         
         #koleksi{ padding:100px 20px; }
         #koleksi h2 { display: inline-block; padding-bottom: 10px; border-bottom: 3px solid #fff; margin-bottom: 40px; }
-        .produk-container{ display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
-        .produk{ width:300px; background:#1a1a1a; border-radius:15px; overflow:hidden; }
-        .produk img{ width:100%; }
-        .produk h3{ margin:15px 0 10px; }
-        .produk p{ color:#ccc; }
-        .produk a{ display:inline-block; margin:15px; padding:10px 20px; background:white; color:black; text-decoration:none; border-radius:8px; font-weight: bold; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); transition: all 0.3s ease; }
-        .produk a:hover { background-color: #ccc; transform: translateY(-4px) scale(1.03); box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.5); }
+        .produk-container{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; max-width:1200px; margin:auto; }
+        .produk{ background:#181818; border:1px solid #252525; border-radius:16px; overflow:hidden; transition:.3s; }
+        .produk img{ width:100%; display:block; aspect-ratio:1/1; object-fit:cover; }
+        .produk h3{ font-size:15px; margin:15px 10px 5px; }
+        .produk p{ color:#bdbdbd; font-size:14px; margin-bottom:10px; }
+        .produk a{ display:block; margin:10px; padding:12px; background:white; color:black; text-decoration:none; border-radius:10px; font-weight:700; transition:.3s; }
+        .produk a:hover{ background:#ddd; }
 
         .samoja-footer { background-color: #000; padding: 60px 40px; border-top: 1px solid #222; margin-top: 50px; }
         .footer-container { display: flex; justify-content: space-between; align-items: flex-start; max-width: 1200px; margin: 0 auto; }
@@ -60,12 +60,13 @@
         .footer-menu li a { color: #fff; text-decoration: none; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
         .copyright { color: #fff; font-size: 12px; text-align: left; margin-top: 10px; }
         .footer-kanan { text-align: right; }
-        .footer-logo { font-family: 'Arial', cursive; font-size: 50px; margin: 0; color: #fff; letter-spacing: 2px; }
+        .footer-logo { font-family: 'Arial', cursive; font-size: 40px; letter-spacing: 4px; margin: 0; color: #fff; letter-spacing: 2px; }
         .find-us { color: #fff; font-size: 11px; font-weight: bold; margin: 0 0 15px 0; letter-spacing: 2px; }
         .sosmed-icons { display: flex; gap: 20px; justify-content: flex-end; }
         .sosmed-icons a { color: #fff; font-size: 22px; transition: 0.3s; }
         .sosmed-icons a:hover { color: #888; transform: translateY(-3px); }
         @media screen and (max-width: 768px) {
+            .produk-container{ grid-template-columns:repeat(3,1fr); gap:20px; }
             .footer-container { flex-direction: column; text-align: center; gap: 40px; }
             .footer-kiri, .footer-kanan { text-align: center; width: 100%; }
             .footer-menu li { width: 100%; border: none; padding: 10px 0; }
@@ -98,21 +99,21 @@
     <div class="produk-container">
         <div class="produk">
             <img src="Product/Eren Yeager/Belakang.jpg" alt="Eren Yeager">
-            <img src="Product/Eren Yeager/Depan.jpg" alt="Eren Yeager">
+            
             <h3>Eren Yeager</h3>
             <p>Rp 89.000</p>
             <a href="https://api.whatsapp.com/send?phone=6289512890115&text=Pesan%20Eren%20Yeager" target="_blank">Pesan Sekarang</a>
         </div>
         <div class="produk">
             <img src="Product/RX-78-02 Gundam/Belakang.jpg" alt="RX-78-02 Gundam">
-            <img src="Product/RX-78-02 Gundam/Depan.jpg" alt="RX-78-02 Gundam">
+            
             <h3>RX-78-02 Gundam</h3>
             <p>Rp 89.000</p>
             <a href="https://api.whatsapp.com/send?phone=6289512890115&text=Pesan%20Gundam" target="_blank">Pesan Sekarang</a>
         </div>
         <div class="produk">
             <img src="Product/Jiraiya/Belakang.jpg" alt="Jiraiya">
-            <img src="Product/Jiraiya/Depan.jpg" alt="Jiraiya">
+            
             <h3>Jiraiya</h3>
             <p>Rp 89.000</p>
             <a href="https://api.whatsapp.com/send?phone=6289512890115&text=Pesan%20Jiraiya" target="_blank">Pesan Sekarang</a>
