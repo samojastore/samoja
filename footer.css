@@ -1,0 +1,108 @@
+.samoja-footer {
+    background-color: #000;
+    padding: 60px 40px;
+    border-top: 1px solid #222;
+    margin-top: 50px;
+}
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.footer-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    text-align: left;
+}
+.footer-menu li {
+    padding: 8px 0;
+    border-bottom: 1px solid #222;
+    width: 250px;
+}
+.footer-menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.copyright {
+    color: #fff;
+    font-size: 12px;
+    text-align: left;
+    margin-top: 10px;
+}
+.footer-kanan {
+    text-align: right;
+}
+.footer-logo {
+    font-family: 'Arial', cursive;
+    font-size: 40px;
+    letter-spacing: 4px;
+    margin: 0;
+    color: #fff;
+}
+.find-us {
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+    letter-spacing: 2px;
+}
+.sosmed-icons {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+}
+.sosmed-icons a {
+    color: #fff;
+    font-size: 22px;
+    transition: 0.3s;
+}
+.sosmed-icons a:hover {
+    color: #888;
+    transform: translateY(-3px);
+}
+/* Alamat tambahan */
+.footer-alamat {
+    margin-top: 20px;
+    text-align: right;
+}
+.footer-alamat p {
+    margin: 5px 0;
+    font-size: 12px;
+    color: #aaa;
+    line-height: 1.4;
+}
+.footer-alamat p:first-child {
+    margin-top: 0;
+}
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+    .footer-kiri, .footer-kanan {
+        text-align: center;
+        width: 100%;
+    }
+    .footer-menu li {
+        width: 100%;
+        border: none;
+        padding: 10px 0;
+    }
+    .sosmed-icons {
+        justify-content: center;
+    }
+    .copyright {
+        text-align: center;
+    }
+    .footer-alamat {
+        text-align: center;
+        margin-top: 20px;
+    }
+}

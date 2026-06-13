@@ -1,0 +1,95 @@
+/* ========== GLOBAL.CSS ========== */
+:root {
+    --warna-utama: #684f36;
+    --warna-wa: #25D366;
+    --warna-ig-start: #f09433;
+    --warna-ig-end: #bc1888;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.50)), url('Foto/background.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 100px auto 60px;
+    padding: 20px;
+}
+
+/* Floating social buttons */
+.floating-social {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+}
+
+.floating-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #333;
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.floating-social a:hover {
+    transform: translateY(-5px);
+    filter: brightness(1.1);
+}
+
+.floating-social .wa {
+    background-color: var(--warna-wa);
+}
+
+.floating-social .ig {
+    background: linear-gradient(45deg, var(--warna-ig-start) 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, var(--warna-ig-end) 100%);
+}
+
+/* Page header (judul halaman) */
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.page-header h1 {
+    font-size: 42px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    color: var(--warna-utama);
+}
+.page-header p {
+    font-size: 18px;
+    color: #ccc;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .container {
+        margin-top: 80px;
+    }
+    .page-header h1 {
+        font-size: 32px;
+    }
+    .floating-social a {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+    }
+}

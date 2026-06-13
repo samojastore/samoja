@@ -6,51 +6,19 @@
     <title>SAMOJA - Tentang Kami</title>
     <link href="https://fonts.googleapis.com/css2?family=Arial&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="Header/header.css">
-    <link rel="stylesheet" href="Footer/footer.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="global.css">
     <style>
-        /* ===== GAYA UMUM ===== */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #111;
-            color: white;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(background.png);
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-        }
-        .about-container {
-            max-width: 1200px;
-            margin: 100px auto 60px;
-            padding: 20px;
-        }
-        .about-hero {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        .about-hero h1 {
-            font-size: 48px;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            color: #684f36;
-        }
-        .about-hero p {
-            font-size: 18px;
-            color: #ccc;
-            max-width: 700px;
-            margin: 0 auto;
-        }
         .about-content {
             background: rgba(0,0,0,0.6);
             border-radius: 30px;
             padding: 40px;
             margin-bottom: 40px;
-            backdrop-filter: blur(4px);
+            text-align: left;
         }
         .about-content h2 {
-            font-size: 32px;
-            border-left: 5px solid #684f36;
+            border-left: 5px solid var(--warna-utama);
             padding-left: 20px;
             margin-bottom: 20px;
         }
@@ -58,7 +26,6 @@
             font-size: 18px;
             line-height: 1.6;
             color: #ddd;
-            margin-bottom: 20px;
         }
         .values-grid {
             display: flex;
@@ -71,32 +38,21 @@
             background: #1a1a1a;
             border-radius: 20px;
             padding: 25px;
-            width: 250px;
+            width: 220px;
             text-align: center;
-            transition: transform 0.3s;
+            transition: 0.3s;
             border: 1px solid #333;
         }
         .value-item:hover {
+            border-color: var(--warna-utama);
             transform: translateY(-5px);
-            border-color: #684f36;
         }
         .value-icon {
             font-size: 50px;
             margin-bottom: 15px;
         }
-        .value-item h3 {
-            font-size: 22px;
-            margin: 10px 0;
-        }
-        .value-item p {
-            font-size: 14px;
-            color: #bbb;
-        }
         @media (max-width: 768px) {
-            .about-container { margin-top: 80px; }
-            .about-hero h1 { font-size: 32px; }
             .about-content { padding: 25px; }
-            .about-content h2 { font-size: 26px; }
             .about-content p { font-size: 16px; }
         }
     </style>
@@ -105,8 +61,8 @@
 
 <div id="header"></div>
 
-<div class="about-container">
-    <div class="about-hero">
+<div class="container">
+    <div class="page-header">
         <h1>Tentang SAMOJA</h1>
         <p>Local streetwear brand yang mengutamakan kenyamanan, kualitas, dan kepercayaan diri.</p>
     </div>
@@ -114,58 +70,37 @@
     <div class="about-content">
         <h2>Siapa Kami?</h2>
         <p>SAMOJA lahir pada tahun 2025 dari semangat anak muda yang ingin menghadirkan pakaian berkualitas dengan desain yang tidak pasaran. Kami percaya bahwa fashion bukan hanya tentang penampilan, tetapi juga tentang bagaimana kamu merasa nyaman dan percaya diri dalam setiap langkah.</p>
-        <p>Setiap produk SAMOJA melalui proses desain yang teliti dan menggunakan bahan terbaik, seperti cotton combed 24s & cotton combed 30s yang adem dan tidak mudah melar. Kami juga mendukung pengrajin lokal dan berusaha mengurangi limbah produksi.</p>
+        <p>Setiap produk SAMOJA melalui proses desain yang teliti dan menggunakan bahan terbaik, seperti cotton combed 24s & combed 30s yang adem dan tidak mudah melar. Kami juga mendukung pengrajin lokal dan berusaha mengurangi limbah produksi.</p>
     </div>
 
     <div class="about-content">
         <h2>Visi & Misi</h2>
         <p><strong>Visi:</strong> Menjadi brand streetwear lokal yang dikenal luas karena kualitas dan desain inovatif, serta menginspirasi generasi muda untuk berani berekspresi.</p>
-        <p><strong>Misi:</strong> Menyediakan pakaian yang nyaman, terjangkau, dan ramah lingkungan. Terus berinovasi dalam desain. Memberikan pelayanan terbaik kepada pelanggan, serta membangun komunitas yang positif.</p>
+        <p><strong>Misi:</strong> Menyediakan pakaian yang nyaman, terjangkau, ramah lingkungan. Terus berinovasi. Memberikan pelayanan terbaik dan membangun komunitas yang positif.</p>
     </div>
 
     <div class="about-content">
         <h2>Nilai Kami</h2>
         <div class="values-grid">
-            <div class="value-item">
-                <div class="value-icon">🎽</div>
-                <h3>Kualitas Premium</h3>
-                <p>Bahan pilihan, jahitan rapi, tahan lama.</p>
-            </div>
-            <div class="value-item">
-                <div class="value-icon">✍️</div>
-                <h3>Desain Eksklusif</h3>
-                <p>Tidak pasaran, terinspirasi dari budaya dan kreativitas.</p>
-            </div>
-            <div class="value-item">
-                <div class="value-icon">🌿</div>
-                <h3>Ramah Lingkungan</h3>
-                <p>Mengurangi limbah, mendukung produksi lokal.</p>
-            </div>
-            <div class="value-item">
-                <div class="value-icon">💬</div>
-                <h3>Pelayanan Responsif</h3>
-                <p>Siap membantu via WhatsApp 24/7.</p>
-            </div>
+            <div class="value-item"><div class="value-icon">🎽</div><h3>Kualitas Premium</h3><p>Bahan pilihan, jahitan rapi</p></div>
+            <div class="value-item"><div class="value-icon">✍️</div><h3>Desain Eksklusif</h3><p>Tidak pasaran, inspiratif</p></div>
+            <div class="value-item"><div class="value-icon">🌿</div><h3>Ramah Lingkungan</h3><p>Produksi lokal, limbah minim</p></div>
+            <div class="value-item"><div class="value-icon">💬</div><h3>Pelayanan Responsif</h3><p>WhatsApp 24/7</p></div>
         </div>
     </div>
+</div>
+
+<div class="floating-social">
+    <a href="https://wa.me/6289512890115" target="_blank" class="wa"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.instagram.com/samojaapprl/" target="_blank" class="ig"><i class="fab fa-instagram"></i></a>
 </div>
 
 <div id="footer"></div>
 
 <script>
-    fetch("Header/header.html")
-        .then(response => response.text())
-        .then(data => document.getElementById("header").innerHTML = data)
-        .catch(err => console.error("Header gagal dimuat:", err));
-    
-    fetch("Footer/footer.html")
-        .then(response => response.text())
-        .then(data => document.getElementById("footer").innerHTML = data)
-        .catch(err => console.error("Footer gagal dimuat:", err));
-    
-    document.addEventListener("contextmenu", e => e.preventDefault());
+    fetch("header.html").then(r=>r.text()).then(d=>document.getElementById("header").innerHTML=d);
+    fetch("footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);
 </script>
-<script src="Header/header.js"></script>
-
+<script src="header.js"></script>
 </body>
 </html>

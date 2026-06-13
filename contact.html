@@ -6,137 +6,61 @@
     <title>SAMOJA - Kontak</title>
     <link href="https://fonts.googleapis.com/css2?family=Arial&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="Header/header.css">
-    <link rel="stylesheet" href="Footer/footer.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="global.css">
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #111;
-            color: white;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(background.png);
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-        }
-        .contact-container {
-            max-width: 1200px;
-            margin: 100px auto 60px;
-            padding: 20px;
-        }
-        .contact-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        .contact-header h1 {
-            font-size: 48px;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            color: #684f36;
-        }
-        .contact-header p {
-            font-size: 18px;
-            color: #ccc;
-        }
         .contact-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 40px;
             justify-content: center;
+            margin-bottom: 50px;
         }
         .contact-card {
             background: rgba(0,0,0,0.6);
             backdrop-filter: blur(4px);
             border-radius: 30px;
             padding: 30px;
-            flex: 1;
             min-width: 250px;
             text-align: center;
+            transition: 0.3s;
             border: 1px solid #333;
-            transition: transform 0.3s;
         }
-        .contact-card:hover {
-            transform: translateY(-5px);
-            border-color: #684f36;
-        }
-        .contact-card i {
-            font-size: 50px;
-            color: #684f36;
-            margin-bottom: 20px;
-        }
-        .contact-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-        .contact-card p {
-            font-size: 16px;
-            color: #ddd;
-            margin-bottom: 20px;
-        }
+        .contact-card:hover { transform: translateY(-5px); border-color: var(--warna-utama); }
+        .contact-card i { font-size: 50px; color: var(--warna-utama); margin-bottom: 20px; }
         .contact-card a {
             display: inline-block;
-            background-color: #684f36;
+            background: var(--warna-utama);
             color: white;
             padding: 10px 25px;
             border-radius: 40px;
             text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
+            margin-top: 15px;
         }
-        .contact-card a:hover {
-            background-color: #8a6b4c;
-            transform: scale(1.02);
-        }
-        /* Form (opsional) */
         .contact-form {
             background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
             border-radius: 30px;
             padding: 30px;
-            margin-top: 50px;
-            border: 1px solid #333;
         }
-        .contact-form h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #684f36;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group input, .form-group textarea {
+        .contact-form input, .contact-form textarea {
             width: 100%;
-            padding: 15px;
+            padding: 14px;
             border-radius: 30px;
             border: 1px solid #444;
             background: #2a2a2a;
             color: white;
-            font-size: 16px;
-            box-sizing: border-box;
+            margin-bottom: 15px;
         }
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        .form-group button {
-            background-color: #684f36;
+        .contact-form button {
+            background: var(--warna-utama);
             color: white;
-            padding: 12px 30px;
-            border: none;
+            padding: 12px;
             border-radius: 40px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
             width: 100%;
-        }
-        .form-group button:hover {
-            background-color: #8a6b4c;
-        }
-        @media (max-width: 768px) {
-            .contact-container { margin-top: 80px; }
-            .contact-header h1 { font-size: 32px; }
-            .contact-card { padding: 20px; }
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -144,89 +68,62 @@
 
 <div id="header"></div>
 
-<div class="contact-container">
-    <div class="contact-header">
+<div class="container">
+    <div class="page-header">
         <h1>Hubungi Kami</h1>
-        <p>Senang mendengar dari Anda. Pilih cara favoritmu untuk terhubung dengan SAMOJA.</p>
+        <p>Pilih cara favoritmu untuk terhubung dengan SAMOJA</p>
     </div>
-
     <div class="contact-grid">
-        <!-- WhatsApp -->
         <div class="contact-card">
             <i class="fab fa-whatsapp"></i>
             <h3>WhatsApp</h3>
-            <p>Chat cepat untuk pemesanan atau pertanyaan.</p>
+            <p>Chat cepat untuk pemesanan</p>
             <a href="https://wa.me/6289512890115" target="_blank">Chat Sekarang</a>
         </div>
-        <!-- Instagram -->
         <div class="contact-card">
             <i class="fab fa-instagram"></i>
             <h3>Instagram</h3>
-            <p>Lihat portofolio dan behind the scene.</p>
-            <a href="https://www.instagram.com/samojaapprl/" target="_blank">Chat Sekarang</a>
+            <p>Lihat portofolio & behind the scene</p>
+            <a href="https://www.instagram.com/samojaapprl/" target="_blank">@samojaapprl</a>
         </div>
-        <!-- Email -->
         <div class="contact-card">
             <i class="fas fa-envelope"></i>
             <h3>Email</h3>
-            <p>Untuk kerjasama atau pertanyaan umum.</p>
-            <a href="">Kirim Sekarang</a>
+            <p>Untuk kerjasama</p>
+            <a href="#">Email</a>
         </div>
     </div>
-
-    <!-- Form kontak sederhana (opsional, pesan akan dikirim ke WhatsApp/email tapi tidak otomatis) -->
     <div class="contact-form">
         <h2>Kirim Pesan Langsung</h2>
         <form id="contactForm">
-            <div class="form-group">
-                <input type="text" id="nama" placeholder="Nama lengkap" required>
-            </div>
-            <div class="form-group">
-                <input type="email" id="email" placeholder="Email (opsional)">
-            </div>
-            <div class="form-group">
-                <textarea id="pesan" placeholder="Tulis pesan Anda..." required></textarea>
-            </div>
-            <div class="form-group">
-                <button type="submit">Kirim via WhatsApp</button>
-            </div>
+            <input type="text" id="nama" placeholder="Nama lengkap" required>
+            <input type="email" id="email" placeholder="Email (opsional)">
+            <textarea id="pesan" placeholder="Tulis pesan Anda..." rows="4" required></textarea>
+            <button type="submit">Kirim via WhatsApp</button>
         </form>
-        <p style="font-size: 12px; color: #aaa; text-align: center; margin-top: 15px;">Pesan akan dikirimkan ke WhatsApp SAMOJA. Kami akan membalas secepatnya.</p>
     </div>
+</div>
+
+<div class="floating-social">
+    <a href="https://wa.me/6289512890115" target="_blank" class="wa"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.instagram.com/samojaapprl/" target="_blank" class="ig"><i class="fab fa-instagram"></i></a>
 </div>
 
 <div id="footer"></div>
 
 <script>
-    // Form submission - kirim ke WhatsApp dengan format pesan
     document.getElementById("contactForm").addEventListener("submit", function(e) {
         e.preventDefault();
         const nama = document.getElementById("nama").value;
         const email = document.getElementById("email").value;
         const pesan = document.getElementById("pesan").value;
-        const waNumber = "6289512890115"; // nomor WhatsApp SAMOJA
         let text = `Halo SAMOJA, saya ${nama} ingin bertanya:\n\n${pesan}`;
-        if (email) text += `\n\nEmail saya: ${email}`;
-        const url = `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(text)}`;
-        window.open(url, "_blank");
-        // Reset form jika diinginkan
-        // document.getElementById("contactForm").reset();
+        if (email) text += `\n\nEmail: ${email}`;
+        window.open(`https://api.whatsapp.com/send?phone=6289512890115&text=${encodeURIComponent(text)}`, "_blank");
     });
-
-    // Load header & footer
-    fetch("Header/header.html")
-        .then(response => response.text())
-        .then(data => document.getElementById("header").innerHTML = data)
-        .catch(err => console.error("Header gagal dimuat:", err));
-    
-    fetch("Footer/footer.html")
-        .then(response => response.text())
-        .then(data => document.getElementById("footer").innerHTML = data)
-        .catch(err => console.error("Footer gagal dimuat:", err));
-    
-    document.addEventListener("contextmenu", e => e.preventDefault());
+    fetch("header.html").then(r=>r.text()).then(d=>document.getElementById("header").innerHTML=d);
+    fetch("footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);
 </script>
-<script src="Header/header.js"></script>
-
+<script src="header.js"></script>
 </body>
 </html>
