@@ -3,7 +3,7 @@
 <head>
     <title>Kustomisasi - SAMOJA</title>
     <link href="https://fonts.googleapis.com/css2?family=Arial&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
     <style>
@@ -90,6 +90,7 @@
         .footer-kanan { text-align: right; }
         .footer-logo { font-family: 'Arial', cursive; font-size: 40px; letter-spacing: 4px; margin: 0; color: #fff; letter-spacing: 2px; }
         .find-us { color: #fff; font-size: 11px; font-weight: bold; margin: 0 0 15px 0; letter-spacing: 2px; }
+        .alamat {color: #fff; font-size: 11px; font-weight: bold; margin: 0 0 15px 0; letter-spacing: 2px;}
         .sosmed-icons { display: flex; gap: 20px; justify-content: flex-end; }
         .sosmed-icons a { color: #fff; font-size: 22px; transition: 0.3s; }
         .sosmed-icons a:hover { color: #888; transform: translateY(-3px); }
@@ -102,6 +103,149 @@
             .copyright { text-align: center; } }
         .konten-custom{
     flex:1;  display:flex; flex-direction:column; justify-content:center; align-items:center;  padding:40px 20px; }
+    
+    /* ========== SECTION UMUM ========== */
+.section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+}
+.section h2:after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #e07c3c;
+    margin: 10px auto 0;
+}
+
+/* ========== TESTIMONIAL ========== */
+.testimonial-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+.testimonial-card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(4px);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 350px;
+    text-align: left;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.testimonial-text {
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+.testimonial-name {
+    font-weight: bold;
+    color: #e07c3c;
+}
+.testimonial-role {
+    font-size: 12px;
+    color: #aaa;
+}
+
+/* ========== KEUNGGULAN ========== */
+.keunggulan-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+.keunggulan-item {
+    background: #1a1a1a;
+    border-radius: 20px;
+    padding: 30px 20px;
+    width: 220px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+.keunggulan-item:hover {
+    transform: translateY(-5px);
+}
+.keunggulan-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+.keunggulan-item h3 {
+    font-size: 20px;
+    margin: 10px 0;
+    color: white;
+}
+.keunggulan-item p {
+    font-size: 14px;
+    color: #bbb;
+}
+
+/* ========== TENTANG SAMOJA ========== */
+.tentang-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    background: rgba(0,0,0,0.5);
+    border-radius: 30px;
+    padding: 40px;
+}
+.tentang-teks {
+    flex: 2;
+    min-width: 250px;
+}
+.tentang-teks p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+.tentang-teks .btn-outline {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 1px solid #e07c3c;
+    color: #e07c3c;
+    text-decoration: none;
+    border-radius: 40px;
+    transition: 0.3s;
+}
+.tentang-teks .btn-outline:hover {
+    background: #e07c3c;
+    color: black;
+}
+.tentang-img {
+    flex: 1;
+    text-align: center;
+}
+.tentang-img img {
+    max-width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+    .tentang-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .tentang-teks {
+        text-align: center;
+    }
+}
+    
     </style>
 
 <body>
@@ -126,7 +270,9 @@
     <select id="produk">
         <option>Kaos Oversize</option>
         <option>Kaos Reguler</option>
-        <option>Kaos Anak</option>
+        <option>Hoodie</option>
+        <option>Crewneck</option>
+        <option>Jersey</option>
         <option>Lainnya</option>
     </select>
 
@@ -170,8 +316,7 @@
     <textarea
         id="catatan"
         rows="5"
-        placeholder="Tulis Umur Anak (Jika Kaos Anak)
-Tulis ukuran sablon Depan dan Belakang
+        placeholder="Tulis ukuran sablon Depan dan Belakang
 contoh : 
 Depan = Logo (Dada tengah), 
 Belakang = Fullback"
@@ -205,6 +350,9 @@ Belakang = Fullback"
                 <a href="https://shopee.co.id/samojaapparel" target="_blank"><i class="fas fa-shopping-bag"></i></a>
                 <a href="https://wa.me/6289512890115" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
+            <p class="alamat"> Alamat : Dusun galumpit RT 01/RW 01 Desa Jatiroke <br> Kecamatan Jatinangor Kabupaten Sumedang </p>
+        </div>
+            
         </div>
     </div>
 </footer>

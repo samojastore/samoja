@@ -6,25 +6,13 @@
     <title>SAMOJA</title>
     <link href="https://fonts.googleapis.com/css2?family=Arial&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Header/header.css">
+    <link rel="stylesheet" href="Footer/footer.css">
     <style>
         html{ scroll-behavior: smooth; }
-        body{ margin:0; font-family:Arial, sans-serif; background-color: #111; color: white; text-align:center; background-image: linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.50)), url('background/background.png'); background-size: cover; background-position: center; background-attachment: fixed; }
-        
-        /* CSS LOGO POJOK */
-        #logo-pojok {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            width: 75px;          /* Sesuaikan ukuran logo */
-            z-index: 10000;
-            opacity: 0;           /* Sembunyi awal */
-            transition: opacity 0.5s ease;
-            pointer-events: none;
-        }
-        .logo-muncul { opacity: 1 !important; }
+        body{ margin:0; font-family:Arial, sans-serif; background-color: #111; color: white; text-align:center; background-image: linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.50)), url('foto/background/background.png'); background-size: cover; background-position: center; background-attachment: fixed; }
         h1{ font-size: clamp(50px, 10vw, 90px); letter-spacing: 4px; margin:0; text-shadow:0 4px 20px rgba(0,0,0,.7); opacity:0; transform:translateY(50px); animation:sliceMuncul 3s cubic-bezier(0.19,1,0.22,1) forwards; }
         .hero{ min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:20px; }
-        
         @keyframes sliceMuncul { to { opacity: 1; transform: translateY(0); } }
         p1{ display: block; font-size: 20px; color: #ccc; font-family: monospace; margin-top: 10px; }
         .efek-ngetik { display: inline-block; white-space: nowrap; overflow: hidden; border-right: 3px solid transparent; width: 0; }
@@ -33,8 +21,6 @@
         @keyframes ngetikBaris1 { from { width: 0; border-color: white; } to { width: 100%; border-color: transparent; } }
         @keyframes ngetikBaris2 { from { width: 0; border-color: white; } to { width: 100%; border-color: white; } }
         @keyframes kedipKursor { 50% { border-color: transparent; } }   
-        p{ font-size:20px; color:#ccc; }
-        
         .hero button{ margin-top:30px; padding:16px 36px; border:none; border-radius:999px; font-size:16px; font-weight:700; background:white; color:black; cursor:pointer; transition:.3s; }
         .hero button:hover{ transform:translateY(-3px); background:#eaeaea; }
         .kontak-melayang { position: fixed; bottom: 25px; right: 25px; display: flex; flex-direction: column-reverse; gap: 12px; z-index: 9999; }
@@ -43,127 +29,138 @@
         .btn-wa { background-color: #25D366; }
         .btn-ig { background-image: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
         .kontak-melayang button:hover { transform: translateY(-5px); box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6); filter: brightness(1.1); }
-        
-        #koleksi{ padding:100px 20px; }
-        #koleksi h2 { display: inline-block; padding-bottom: 10px; border-bottom: 3px solid #fff; margin-bottom: 40px; }
-        .produk-container{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; max-width:1200px; margin:auto; }
-        .produk{ background:#181818; border:1px solid #252525; border-radius:16px; overflow:hidden; transition:.3s; }
-        .produk img{ width:100%; display:block; aspect-ratio:1/1; object-fit:cover; }
-        .produk h3{ font-size:15px; margin:15px 10px 5px; }
-        .produk p{ color:#bdbdbd; font-size:14px; margin-bottom:10px; }
-        .produk a{ display:block; margin:10px; padding:12px; background:white; color:black; text-decoration:none; border-radius:10px; font-weight:700; transition:.3s; }
-        .produk a:hover{ background:#ddd; }
-
-        .samoja-footer { background-color: #000; padding: 60px 40px; border-top: 1px solid #222; margin-top: 50px; }
-        .footer-container { display: flex; justify-content: space-between; align-items: flex-start; max-width: 1200px; margin: 0 auto; }
-        .footer-menu { list-style: none; padding: 0; margin: 0 0 20px 0; text-align: left; }
-        .footer-menu li { padding: 8px 0; border-bottom: 1px solid #222; width: 250px; }
-        .footer-menu li a { color: #fff; text-decoration: none; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
-        .copyright { color: #fff; font-size: 12px; text-align: left; margin-top: 10px; }
-        .footer-kanan { text-align: right; }
-        .footer-logo { font-family: 'Arial', cursive; font-size: 40px; letter-spacing: 4px; margin: 0; color: #fff; letter-spacing: 2px; }
-        .find-us { color: #fff; font-size: 11px; font-weight: bold; margin: 0 0 15px 0; letter-spacing: 2px; }
-        .sosmed-icons { display: flex; gap: 20px; justify-content: flex-end; }
-        .sosmed-icons a { color: #fff; font-size: 22px; transition: 0.3s; }
-        .sosmed-icons a:hover { color: #888; transform: translateY(-3px); }
-        @media screen and (max-width: 768px) {
-            .produk-container{ grid-template-columns:repeat(3,1fr); gap:20px; }
-            .footer-container { flex-direction: column; text-align: center; gap: 40px; }
-            .footer-kiri, .footer-kanan { text-align: center; width: 100%; }
-            .footer-menu li { width: 100%; border: none; padding: 10px 0; }
-            .sosmed-icons { justify-content: center; }
-            .copyright { text-align: center; }
-        }
+        .section { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+        .section h2 { font-size: 32px; margin-bottom: 40px; letter-spacing: 2px; position: relative; display: inline-block; }
+        .section h2:after { content: ''; display: block; width: 60px; height: 3px; background: #684f36; margin: 10px auto 0; }
+        .testimonial-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
+        .testimonial-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(4px); border-radius: 20px; padding: 30px; max-width: 350px; text-align: left; border: 1px solid rgba(255,255,255,0.1); }
+        .testimonial-text { font-style: italic; font-size: 16px; line-height: 1.5; color: #ddd; margin-bottom: 20px; }
+        .testimonial-name { font-weight: bold; color: #684f36; }
+        .testimonial-role { font-size: 12px; color: #aaa; }
+        .keunggulan-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
+        .keunggulan-item { background: #1a1a1a; border-radius: 20px; padding: 30px 20px; width: 220px; text-align: center; transition: transform 0.3s; }
+        .keunggulan-item:hover { transform: translateY(-5px); }
+        .keunggulan-icon { font-size: 48px; margin-bottom: 15px; }
+        .keunggulan-item h3 { font-size: 20px; margin: 10px 0; color: white; }
+        .keunggulan-item p { font-size: 14px; color: #bbb; }
+        .tentang-content { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: center; text-align: left; background: rgba(0,0,0,0.5); border-radius: 30px; padding: 40px; }
+        .tentang-teks { flex: 2; min-width: 250px; }
+        .tentang-teks p { font-size: 16px; line-height: 1.6; color: #ccc; margin-bottom: 20px; }
+        .tentang-teks .btn-outline { display: inline-block; padding: 12px 28px; border: 1px solid #684f36; color: #684f36; text-decoration: none; border-radius: 40px; transition: 0.3s; }
+        .tentang-teks .btn-outline:hover { background: #684f36; color: black; }
+        .tentang-img { flex: 1; text-align: center; }
+        .tentang-img img { max-width: 100%; border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+        @media (max-width: 768px) {
+        .tentang-content { flex-direction: column; text-align: center; }
+        .tentang-teks { text-align: center; } }
     </style>
 </head>
-
 <body>
 
-<img src="Foto/LOGO S.png" alt="Logo Samoja" id="logo-pojok">
-
+<div id="header"></div>
 <div class="hero">
     <h1>SAMOJA</h1>
-    <p1>
-        <span class="efek-ngetik baris-1">Local Streetwear Brand</span><br>
-        <span class="efek-ngetik baris-2">Designed for Everyday Confidence</span>
-    </p1>
-    <a href="#koleksi"><button>Lihat Koleksi</button></a>
+    <p1><span class="efek-ngetik baris-1">Local Streetwear Brand</span><br><span class="efek-ngetik baris-2">Designed for Everyday Confidence</span></p1>
+    <a href="shop.html"><button>Lihat Koleksi</button></a>
     <a href="custom.html">
     <button>Kustomisasi</button> </a>
+</div>
+<div class="section">
+    <h2>ULASAN PELANGGAN</h2>
+    <div class="testimonial-grid">
+        <div class="testimonial-card">
+            <div class="testimonial-text">"Kaos SAMOJA nyaman banget dipakai sehari-hari. Desainnya keren, bahunya adem. Next mau beli lagi!"</div>
+            <div class="testimonial-name">— Andi Prasetyo</div>
+            <div class="testimonial-role">Pelanggan setia</div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-text">"Proses order cepat, respons admin bagus. Kualitas bahan premium, worth it banget!"</div>
+            <div class="testimonial-name">— Sarah Dewi</div>
+            <div class="testimonial-role">Influencer fashion</div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-text">"Suka banget sama desain eksklusif SAMOJA. Nggak pasaran. Pengiriman juga cepat."</div>
+            <div class="testimonial-name">— Rizki Fadillah</div>
+            <div class="testimonial-role">Content creator</div>
+        </div>
+    </div>
+</div>
+<div class="section" style="background: rgba(0,0,0,0.3); border-radius: 40px; margin: 20px auto;">
+    <h2>KENAPA SAMOJA?</h2>
+    <div class="keunggulan-grid">
+        <div class="keunggulan-item">
+            <div class="keunggulan-icon">🎽</div>
+            <h3>Bahan Premium</h3>
+            <p>Cotton combed 30s, adem dan tidak mudah melar</p>
+        </div>
+        <div class="keunggulan-item">
+            <div class="keunggulan-icon">✍️</div>
+            <h3>Desain Eksklusif</h3>
+            <p>Setiap koleksi dirancang unik, tidak pasaran</p>
+        </div>
+        <div class="keunggulan-item">
+            <div class="keunggulan-icon">💬</div>
+            <h3>Respons Cepat</h3>
+            <p>Layanan WhatsApp 24/7 untuk pesanan dan konsultasi</p>
+        </div>
+        <div class="keunggulan-item">
+            <div class="keunggulan-icon">🔄</div>
+            <h3>Garansi Pengembalian</h3>
+            <p>Produk cacat? Kami ganti 100% tanpa ribet</p>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <h2>TENTANG SAMOJA</h2>
+    <div class="tentang-content">
+        <div class="tentang-teks">
+            <p>SAMOJA adalah local streetwear brand yang lahir pada 2025 dengan semangat memberikan pakaian berkualitas tinggi untuk keseharian. Kami percaya bahwa fashion bukan hanya tentang penampilan, tapi juga kenyamanan dan kepercayaan diri.</p>
+            <p>Setiap produk SAMOJA melalui proses desain yang teliti dan menggunakan bahan terbaik. Kami juga mendukung pengrajin lokal dan selalu berusaha mengurangi limbah produksi.</p>
+            <a href="about.html" class="btn-outline">Lebih lanjut tentang kami →</a>
+        </div>
+        <div class="tentang-img">
+            <img src="Foto/samoja-team.jpg" alt="Tentang SAMOJA">
+        </div>
+    </div>
 </div>
 
 <div class="kontak-melayang">
     <a href="https://wa.me/6289512890115" target="_blank" rel="noopener noreferrer"><button class="btn-wa">Whatsapp</button></a>
     <a href="https://www.instagram.com/samojaapprl/" target="_blank" rel="noopener noreferrer"><button class="btn-ig">Instagram</button></a>
 </div>
-
-<section id="koleksi">
-    <h2>KOLEKSI SAMOJA</h2>
-    <div class="produk-container">
-        <div class="produk">
-            <img src="Product/Eren Yeager/Belakang.jpg" alt="Eren Yeager">
-            
-            <h3>Eren Yeager</h3>
-            <p>Rp 89.000</p>
-            <a href="https://api.whatsapp.com/send?phone=6289512890115&text=Pesan%20Eren%20Yeager" target="_blank">Pesan Sekarang</a>
-        </div>
-        <div class="produk">
-            <img src="Product/RX-78-02 Gundam/Belakang.jpg" alt="RX-78-02 Gundam">
-            
-            <h3>RX-78-02 Gundam</h3>
-            <p>Rp 89.000</p>
-            <a href="https://api.whatsapp.com/send?phone=6289512890115&text=Pesan%20Gundam" target="_blank">Pesan Sekarang</a>
-        </div>
-        <div class="produk">
-            <img src="Product/Jiraiya/Belakang.jpg" alt="Jiraiya">
-            
-            <h3>Jiraiya</h3>
-            <p>Rp 89.000</p>
-            <a href="https://api.whatsapp.com/send?phone=6289512890115&text=Pesan%20Jiraiya" target="_blank">Pesan Sekarang</a>
-        </div>
-    </div>
-</section>
-
-<footer class="samoja-footer">
-    <div class="footer-container">
-        <div class="footer-kiri">
-            <ul class="footer-menu">
-                <li><a href="#">KEBIJAKAN PENGEMBALIAN</a></li>
-                <li><a href="#">CARA PEMESANAN</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">KONFIRMASI PEMESANAN</a></li>
-            </ul>
-            <p class="copyright">Copyright &copy; 2025 - 2026 Samoja Apparel.</p>
-        </div>
-        <div class="footer-kanan">
-            <h3 class="footer-logo">SAMOJA</h3>
-            <p class="find-us">FIND US ON</p>
-            <div class="sosmed-icons">
-                <a href="https://www.instagram.com/samojaapprl/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@samojaapprl?_r=1&_t=ZS-978zdmtQLae" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://shopee.co.id/samojaapparel" target="_blank"><i class="fas fa-shopping-bag"></i></a>
-                <a href="https://wa.me/6289512890115" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </div>
-    </div>
-</footer>
+<div id="footer"></div>
 
 <script>
-    window.addEventListener('scroll', function() {
-        const logo = document.getElementById('logo-pojok');
-        if (window.scrollY > 50) {
-            logo.classList.add('logo-muncul');
-        } else {
-            logo.classList.remove('logo-muncul');
-        }
+    fetch("Header/header.html")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status} - File header.html tidak ditemukan`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById("header").innerHTML = data;
+        })
+        .catch(err => console.error("GAGAL MEMUAT HEADER:", err));
+    
+    fetch("Footer/footer.html")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status} - File footer.html tidak ditemukan`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById("footer").innerHTML = data;
+        })
+        .catch(err => console.error("GAGAL MEMUAT FOOTER:", err));
+    
+    document.addEventListener("contextmenu", function(e){
+        e.preventDefault();
     });
 </script>
 
-<script>
-document.addEventListener("contextmenu", function(e){
-    e.preventDefault();
-});
-</script>
+<script src="Header/header.js"></script>
 
 </body>
 </html>

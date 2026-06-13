@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SAMOJA - Konfirmasi Pembayaran</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arial&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Header/header.css">
+    <link rel="stylesheet" href="Footer/footer.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('foto/background/background.png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 100px auto 60px;
+            padding: 20px;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .page-header h1 {
+            font-size: 42px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            color: #684f36;
+        }
+        .page-header p {
+            font-size: 18px;
+            color: #ccc;
+        }
+        .form-box {
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 30px;
+            padding: 30px;
+            border: 1px solid #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #ddd;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border-radius: 30px;
+            border: 1px solid #444;
+            background: #2a2a2a;
+            color: white;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .btn-submit {
+            background-color: #684f36;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #8a6b4c;
+        }
+        .info-wa {
+            background: rgba(0,0,0,0.4);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+            border-left: 4px solid #25D366;
+        }
+        .info-wa i {
+            font-size: 40px;
+            color: #25D366;
+        }
+        .btn-wa {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        @media (max-width: 768px) {
+            .container { margin-top: 80px; }
+            .page-header h1 { font-size: 32px; }
+            .form-box { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="header"></div>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Konfirmasi Pembayaran</h1>
+        <p>Isi form di bawah untuk mengirimkan konfirmasi transfer Anda ke admin via WhatsApp.</p>
+    </div>
+
+    <div class="form-box">
+        <form id="paymentForm">
+            <div class="form-group">
+                <label>Nama Lengkap <span style="color:#e07c3c;">*</span></label>
+                <input type="text" id="nama" required placeholder="Contoh: Andi Prasetyo">
+            </div>
+            <div class="form-group">
+                <label>Nomor Pesanan (Opsional)</label>
+                <input type="text" id="orderId" placeholder="Jika ada, cantumkan nomor pesanan dari admin">
+            </div>
+            <div class="form-group">
+                <label>Bank Pengirim <span style="color:#e07c3c;">*</span></label>
+                <select id="bank" required>
+                    <option value="">Pilih Bank</option>
+                    <option value="BCA">BCA</option>
+                    <option value="Mandiri">Mandiri</option>
+                    <option value="BNI">BNI</option>
+                    <option value="BRI">BRI</option>
+                    <option value="Bank Lain">Bank Lain</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Jumlah Transfer <span style="color:#e07c3c;">*</span></label>
+                <input type="number" id="jumlah" required placeholder="Contoh: 89000">
+            </div>
+            <div class="form-group">
+                <label>Tanggal Transfer</label>
+                <input type="date" id="tanggal">
+            </div>
+            <div class="form-group">
+                <label>Catatan Tambahan</label>
+                <textarea id="catatan" placeholder="Misal: sudah transfer via BCA a.n. Andi"></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Kirim Konfirmasi via WhatsApp</button>
+        </form>
+    </div>
+
+    <div class="info-wa">
+        <i class="fab fa-whatsapp"></i>
+        <h3>Atau kirim manual via WhatsApp</h3>
+        <p>Anda juga bisa langsung mengirim pesan ke nomor admin beserta foto bukti transfer.</p>
+        <a href="https://wa.me/6289512890115" target="_blank" class="btn-wa">Chat Admin Sekarang</a>
+    </div>
+</div>
+
+<div id="footer"></div>
+
+<script>
+    document.getElementById("paymentForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        // Ambil nilai form
+        const nama = document.getElementById("nama").value.trim();
+        const orderId = document.getElementById("orderId").value.trim();
+        const bank = document.getElementById("bank").value;
+        const jumlah = document.getElementById("jumlah").value.trim();
+        const tanggal = document.getElementById("tanggal").value;
+        const catatan = document.getElementById("catatan").value.trim();
+        
+        // Validasi sederhana
+        if (!nama || !bank || !jumlah) {
+            alert("Mohon isi nama, bank, dan jumlah transfer.");
+            return;
+        }
+        
+        // Format pesan WhatsApp
+        let pesan = `*KONFIRMASI PEMBAYARAN SAMOJA*\n\n`;
+        pesan += `Nama: ${nama}\n`;
+        if (orderId) pesan += `Nomor Pesanan: ${orderId}\n`;
+        pesan += `Bank Pengirim: ${bank}\n`;
+        pesan += `Jumlah Transfer: Rp ${parseInt(jumlah).toLocaleString()}\n`;
+        if (tanggal) pesan += `Tanggal Transfer: ${tanggal}\n`;
+        if (catatan) pesan += `Catatan: ${catatan}\n`;
+        pesan += `\n*Mohon kirimkan foto bukti transfer setelah pesan ini.*\nTerima kasih.`;
+        
+        // Encode dan buka WhatsApp
+        const waNumber = "6289512890115";
+        const url = `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(pesan)}`;
+        window.open(url, "_blank");
+        
+        // Reset form opsional
+        // document.getElementById("paymentForm").reset();
+    });
+    
+    // Load header & footer
+    fetch("Header/header.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("header").innerHTML = data)
+        .catch(err => console.error("Header gagal dimuat:", err));
+    
+    fetch("Footer/footer.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("footer").innerHTML = data)
+        .catch(err => console.error("Footer gagal dimuat:", err));
+    
+    document.addEventListener("contextmenu", e => e.preventDefault());
+</script>
+<script src="Header/header.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SAMOJA - Galeri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arial&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Header/header.css">
+    <link rel="stylesheet" href="Footer/footer.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('foto/background/background.png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .gallery-container {
+            max-width: 1200px;
+            margin: 100px auto 60px;
+            padding: 20px;
+        }
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .gallery-header h1 {
+            font-size: 48px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            color: #684f36;
+        }
+        .gallery-header p {
+            font-size: 18px;
+            color: #ccc;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .gallery-item {
+            background: #1a1a1a;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #333;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            border-color: #684f36;
+        }
+        .gallery-item img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-caption {
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #ccc;
+        }
+        .empty-message {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 30px;
+            backdrop-filter: blur(4px);
+        }
+        .empty-message i {
+            font-size: 64px;
+            color: #684f36;
+            margin-bottom: 20px;
+        }
+        .empty-message h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .empty-message p {
+            font-size: 16px;
+            color: #ccc;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 10001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 16px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+        .lightbox .close-lightbox {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        .lightbox .close-lightbox:hover {
+            background: #684f36;
+            transform: scale(1.1);
+        }
+        .lightbox-caption {
+            margin-top: 20px;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            background: rgba(0,0,0,0.6);
+            padding: 8px 20px;
+            border-radius: 40px;
+        }
+        @media (max-width: 768px) {
+            .gallery-container { margin-top: 80px; }
+            .gallery-header h1 { font-size: 32px; }
+            .gallery-grid { gap: 15px; }
+            .lightbox .close-lightbox { top: 20px; right: 20px; font-size: 30px; width: 40px; height: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="header"></div>
+
+<div class="gallery-container">
+    <div class="gallery-header">
+        <h1>Galeri SAMOJA</h1>
+        <p>Momen terbaik, koleksi, dan inspirasi dari SAMOJA.</p>
+    </div>
+    <div class="gallery-grid" id="gallery-grid"></div>
+</div>
+
+<div id="footer"></div>
+
+<div id="lightbox" class="lightbox">
+    <div class="close-lightbox" id="close-lightbox">&times;</div>
+    <img id="lightbox-img" src="" alt="">
+    <div id="lightbox-caption" class="lightbox-caption"></div>
+</div>
+
+<script>
+    // ============================================================
+    //  TEMPAT MENAMBAHKAN FOTO GALERI
+    // ============================================================
+    const galleryItems = [
+        // Tambahkan foto di sini dengan format:
+        // { src: "Gallery/nama_foto.jpg", caption: "Keterangan foto" }
+    ];
+
+    function renderGallery() {
+        const grid = document.getElementById("gallery-grid");
+        if (!grid) return;
+        
+        if (galleryItems.length === 0) {
+            grid.innerHTML = `
+                <div class="empty-message">
+                    <i class="fas fa-images"></i>
+                    <h3>Belum Ada Foto</h3>
+                    <p>Galeri SAMOJA sedang dalam persiapan. Silakan cek kembali nanti.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        grid.innerHTML = "";
+        galleryItems.forEach((item, index) => {
+            const col = document.createElement("div");
+            col.className = "gallery-item";
+            col.innerHTML = `
+                <img src="${item.src}" alt="${item.caption}" loading="lazy">
+                <div class="gallery-caption">${item.caption}</div>
+            `;
+            col.addEventListener("click", () => openLightbox(index));
+            grid.appendChild(col);
+        });
+    }
+
+    function openLightbox(index) {
+        const item = galleryItems[index];
+        if (!item) return;
+        const lightbox = document.getElementById("lightbox");
+        const img = document.getElementById("lightbox-img");
+        const caption = document.getElementById("lightbox-caption");
+        img.src = item.src;
+        caption.innerText = item.caption;
+        lightbox.classList.add("active");
+    }
+
+    function closeLightbox() {
+        const lightbox = document.getElementById("lightbox");
+        lightbox.classList.remove("active");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        renderGallery();
+
+        const lightbox = document.getElementById("lightbox");
+        const closeBtn = document.getElementById("close-lightbox");
+        closeBtn.addEventListener("click", closeLightbox);
+        lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && lightbox.classList.contains("active")) closeLightbox();
+        });
+    });
+
+    fetch("Header/header.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("header").innerHTML = data)
+        .catch(err => console.error("Header gagal dimuat:", err));
+    
+    fetch("Footer/footer.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("footer").innerHTML = data)
+        .catch(err => console.error("Footer gagal dimuat:", err));
+    
+    document.addEventListener("contextmenu", e => e.preventDefault());
+</script>
+<script src="Header/header.js"></script>
+
+</body>
+</html>

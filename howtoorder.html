@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SAMOJA - Cara Pemesanan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arial&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Header/header.css">
+    <link rel="stylesheet" href="Footer/footer.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('foto/background/background.png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 100px auto 60px;
+            padding: 20px;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .page-header h1 {
+            font-size: 48px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            color: #684f36;
+        }
+        .page-header p {
+            font-size: 18px;
+            color: #ccc;
+        }
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+        .step-card {
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 30px;
+            padding: 30px 25px;
+            text-align: center;
+            flex: 1;
+            min-width: 220px;
+            border: 1px solid #333;
+            transition: transform 0.3s;
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: #684f36;
+        }
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #684f36;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        .step-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        .step-card p {
+            font-size: 15px;
+            color: #ccc;
+            line-height: 1.5;
+        }
+        .info-box {
+            background: rgba(0,0,0,0.5);
+            border-radius: 30px;
+            padding: 30px;
+            margin-top: 30px;
+            border-left: 5px solid #684f36;
+        }
+        .info-box h3 {
+            color: #684f36;
+            margin-top: 0;
+        }
+        .info-box ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        .info-box li {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+        .btn-wa {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+        .btn-wa:hover {
+            background-color: #20b858;
+            transform: scale(1.02);
+        }
+        @media (max-width: 768px) {
+            .container { margin-top: 80px; }
+            .page-header h1 { font-size: 32px; }
+            .step-card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="header"></div>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Cara Pemesanan</h1>
+        <p>Mudah dan cepat. Ikuti langkah-langkah berikut untuk memesan produk SAMOJA.</p>
+    </div>
+
+    <div class="steps">
+        <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Pilih Produk</h3>
+            <p>Kunjungi halaman <a href="shop.html" style="color:#684f36;">Shop</a>, klik produk yang kamu suka, pilih ukuran dan jumlah.</p>
+        </div>
+        <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Konfirmasi via WA</h3>
+            <p>Klik tombol "Pesan Sekarang" di modal produk, secara otomatis akan membuka WhatsApp dengan pesan terformat.</p>
+        </div>
+        <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Admin Konfirmasi</h3>
+            <p>Admin SAMOJA akan membalas dalam 1x24 jam untuk konfirmasi stok, ongkir, dan total pembayaran.</p>
+        </div>
+        <div class="step-card">
+            <div class="step-number">4</div>
+            <h3>Pembayaran & Pengiriman</h3>
+            <p>Lakukan pembayaran sesuai instruksi. Barang akan dikirim setelah pembayaran dikonfirmasi.</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h3><i class="fas fa-question-circle"></i> Informasi Penting</h3>
+        <ul>
+            <li><strong>Pemesanan hanya via WhatsApp</strong> – Kami tidak menyediakan sistem keranjang online. Setiap pesanan akan diproses manual oleh admin.</li>
+            <li><strong>Respon cepat</strong> – Jam operasional admin: Senin – Sabtu (10.00 – 20.00). Di luar jam tersebut, pesan akan dibalas keesokan harinya.</li>
+            <li><strong>Pembayaran</strong> – Transfer ke rekening BCA/Mandiri (info akan diberikan saat konfirmasi pesanan).</li>
+            <li><strong>Pengiriman</strong> – Menggunakan JNE / SiCepat (sesuai pilihan). Ongkir dihitung berdasarkan lokasi.</li>
+            <li><strong>Garansi</strong> – Barang cacat atau salah ukuran dapat dikembalikan (syarat & ketentuan berlaku).</li>
+        </ul>
+        <p style="text-align: center; margin-top: 20px;">
+            <a href="https://wa.me/6289512890115" target="_blank" class="btn-wa">
+                <i class="fab fa-whatsapp"></i> Hubungi Admin Sekarang
+            </a>
+        </p>
+    </div>
+</div>
+
+<div id="footer"></div>
+
+<script>
+    fetch("Header/header.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("header").innerHTML = data)
+        .catch(err => console.error("Header gagal dimuat:", err));
+    
+    fetch("Footer/footer.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("footer").innerHTML = data)
+        .catch(err => console.error("Footer gagal dimuat:", err));
+    
+    document.addEventListener("contextmenu", e => e.preventDefault());
+</script>
+<script src="Header/header.js"></script>
+
+</body>
+</html>

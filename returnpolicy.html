@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SAMOJA - Kebijakan Pengembalian</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arial&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Header/header.css">
+    <link rel="stylesheet" href="Footer/footer.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('foto/background/background.png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 100px auto 60px;
+            padding: 20px;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .page-header h1 {
+            font-size: 42px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            color: #684f36;
+        }
+        .page-header p {
+            font-size: 18px;
+            color: white;
+        }
+        .policy-box {
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 30px;
+            padding: 30px;
+            border: 1px solid #333;
+        }
+        .policy-list {
+            list-style: none;
+            padding: 0;
+        }
+        .policy-list li {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+        }
+        .policy-number {
+            background: #684f36;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .policy-text {
+            flex: 1;
+            line-height: 1.6;
+            color: white;
+        }
+        .policy-text strong {
+            color: white;
+            font-weight: bold;
+        }
+        .note {
+            background: rgba(0,0,0,0.4);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+            border-left: 4px solid #684f36;
+        }
+        .note h3, .note p {
+            color: white;
+        }
+        .btn-contact {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        @media (max-width: 768px) {
+            .container { margin-top: 80px; }
+            .page-header h1 { font-size: 32px; }
+            .policy-box { padding: 20px; }
+            .policy-list li { gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="header"></div>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Kebijakan Pengembalian & Penukaran</h1>
+        <p>Silakan baca ketentuan berikut sebelum mengajukan pengembalian atau penukaran barang.</p>
+    </div>
+
+    <div class="policy-box">
+        <ul class="policy-list">
+            <li>
+                <span class="policy-number">1</span>
+                <div class="policy-text"><strong>Batas Waktu:</strong> Pengajuan pengembalian/penukaran maksimal <strong>2 hari</strong> setelah barang diterima.</div>
+            </li>
+            <li>
+                <span class="policy-number">2</span>
+                <div class="policy-text"><strong>Kondisi Barang:</strong> Barang harus dalam keadaan <strong>tidak rusak, tidak kotor, dan belum digunakan</strong>. Label produk harus masih terpasang.</div>
+            </li>
+            <li>
+                <span class="policy-number">3</span>
+                <div class="policy-text"><strong>Konfirmasi Sebelum Return:</strong> Jika menerima produk <strong>cacat/rusak</strong>, Anda wajib mengkonfirmasi ke admin terlebih dahulu melalui WhatsApp. Jangan langsung mengirimkan barang sebelum mendapat persetujuan. <strong>Penukaran atau pengembalian dana TIDAK DIJAMIN</strong> jika tidak memenuhi syarat.</div>
+            </li>
+            <li>
+                <span class="policy-number">4</span>
+                <div class="policy-text"><strong>Pengemasan Kembali:</strong> Barang yang akan dikembalikan harus <strong>dikemas dengan baik dan rapi</strong> seperti semula (gunakan kemasan asli jika memungkinkan).</div>
+            </li>
+            <li>
+                <span class="policy-number">5</span>
+                <div class="policy-text"><strong>Ongkos Kirim:</strong> Anda bebas memilih jasa ekspedisi apapun (JNE, SiCepat, Pos, dll). <strong>Biaya pengiriman kembali ditanggung oleh pembeli.</strong></div>
+            </li>
+            <li>
+                <span class="policy-number">6</span>
+                <div class="policy-text"><strong>Proses Penukaran:</strong> Barang pengganti baru akan dikirim <strong>setelah kami menerima barang penukaran Anda</strong> dan mengkonfirmasi kelayakan pengembalian/penukaran.</div>
+            </li>
+            <li>
+                <span class="policy-number">7</span>
+                <div class="policy-text"><strong>Risiko Pengiriman:</strong> Kami <strong>tidak bertanggung jawab</strong> atas kehilangan atau kerusakan barang pengembalian selama proses pengiriman kembali ke pihak SAMOJA.</div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="note">
+        <i class="fas fa-comment-dots" style="font-size: 30px; color: #684f36;"></i>
+        <h3>Butuh Bantuan?</h3>
+        <p>Jika ada pertanyaan seputar pengembalian atau penukaran, silakan hubungi admin kami melalui WhatsApp.</p>
+        <a href="https://wa.me/6289512890115" target="_blank" class="btn-contact">
+            <i class="fab fa-whatsapp"></i> Hubungi Admin
+        </a>
+    </div>
+</div>
+
+<div id="footer"></div>
+
+<script>
+    fetch("Header/header.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("header").innerHTML = data)
+        .catch(err => console.error("Header gagal dimuat:", err));
+    
+    fetch("Footer/footer.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("footer").innerHTML = data)
+        .catch(err => console.error("Footer gagal dimuat:", err));
+    
+    document.addEventListener("contextmenu", e => e.preventDefault());
+</script>
+<script src="Header/header.js"></script>
+
+</body>
+</html>

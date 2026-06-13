@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SAMOJA - FAQ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arial&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Header/header.css">
+    <link rel="stylesheet" href="Footer/footer.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('foto/background/background.png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .faq-container {
+            max-width: 1000px;
+            margin: 100px auto 60px;
+            padding: 20px;
+        }
+        .faq-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .faq-header h1 {
+            font-size: 48px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            color: #684f36;
+        }
+        .faq-header p {
+            font-size: 18px;
+            color: #ccc;
+        }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .faq-item {
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 20px;
+            border: 1px solid #333;
+            overflow: hidden;
+            transition: 0.2s;
+        }
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+            background: rgba(0,0,0,0.3);
+        }
+        .faq-question:hover {
+            background: rgba(104,79,54,0.2);
+        }
+        .faq-question i {
+            color: #684f36;
+            font-size: 20px;
+            transition: transform 0.2s;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 20px;
+            border-top: 0px solid #333;
+        }
+        .faq-answer.show {
+            max-height: 500px; /* cukup untuk konten jawaban */
+            padding: 0 20px 20px 20px;
+            border-top: 1px solid #333;
+        }
+        .faq-answer p {
+            margin: 15px 0 0 0;
+            line-height: 1.5;
+            color: #ddd;
+        }
+        @media (max-width: 768px) {
+            .faq-container { margin-top: 80px; }
+            .faq-header h1 { font-size: 32px; }
+            .faq-question { font-size: 16px; padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="header"></div>
+
+<div class="faq-container">
+    <div class="faq-header">
+        <h1>Frequently Asked Questions</h1>
+        <p>Pertanyaan yang sering diajukan seputar SAMOJA.</p>
+    </div>
+    <div class="faq-list" id="faqList">
+        <!-- FAQ items akan diisi JavaScript -->
+    </div>
+</div>
+
+<div id="footer"></div>
+
+<script>
+    // Data FAQ
+    const faqData = [
+        {
+            q: "Bagaimana cara memesan produk SAMOJA?",
+            a: "Kunjungi halaman Shop, klik produk yang diinginkan, pilih ukuran dan jumlah, lalu klik 'Pesan Sekarang'. Anda akan diarahkan ke WhatsApp untuk konfirmasi pesanan."
+        },
+        {
+            q: "Apakah ada minimal pemesanan?",
+            a: "Tidak ada minimal pemesanan. Anda bisa memesan 1 pcs pun."
+        },
+        {
+            q: "Berapa lama proses pemesanan?",
+            a: "Setelah Anda mengirim pesan via WhatsApp, admin akan membalas dalam 1x24 jam untuk konfirmasi stok dan total pembayaran. Setelah pembayaran dikonfirmasi, barang diproses 1-2 hari lalu dikirim."
+        },
+        {
+            q: "Metode pembayaran apa saja?",
+            a: "Saat ini kami menerima transfer bank ke BCA atau Mandiri. Informasi rekening akan diberikan admin saat konfirmasi pesanan."
+        },
+        {
+            q: "Apakah bisa COD (Bayar di Tempat)?",
+            a: "Maaf, kami belum menyediakan layanan COD. Semua pembayaran dilakukan via transfer bank."
+        },
+        {
+            q: "Berapa ongkos kirim?",
+            a: "Ongkir dihitung berdasarkan lokasi dan berat barang. Admin akan memberitahukan ongkir setelah Anda memberikan alamat lengkap."
+        },
+        {
+            q: "Ekspedisi apa yang digunakan?",
+            a: "Kami menggunakan JNE dan SiCepat. Anda bisa memilih ekspedisi sesuai preferensi."
+        },
+        {
+            q: "Apakah barang bisa ditukar jika ukuran tidak sesuai?",
+            a: "Bisa. Barang dapat ditukar dengan ukuran lain dalam waktu 7 hari setelah barang diterima, dengan syarat barang belum dicuci dan masih dalam kondisi baik. Biaya pengiriman ditanggung pembeli."
+        },
+        {
+            q: "Bagaimana jika barang rusak/cacat?",
+            a: "Kami memberikan garansi 100% untuk barang cacat produksi. Silakan hubungi admin via WhatsApp disertai foto bukti kerusakan, dan kami akan mengganti barang tanpa biaya tambahan."
+        },
+        {
+            q: "Apakah ada diskon untuk pembelian grosir?",
+            a: "Untuk pembelian minimal 12 pcs, kami berikan diskon khusus. Silakan chat admin untuk informasi lebih lanjut."
+        }
+    ];
+
+    // Render FAQ dengan accordion
+    function renderFaq() {
+        const container = document.getElementById("faqList");
+        if (!container) return;
+        container.innerHTML = "";
+        faqData.forEach((item, index) => {
+            const faqItem = document.createElement("div");
+            faqItem.className = "faq-item";
+            faqItem.innerHTML = `
+                <div class="faq-question" data-index="${index}">
+                    <span>${item.q}</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" id="answer-${index}">
+                    <p>${item.a}</p>
+                </div>
+            `;
+            container.appendChild(faqItem);
+        });
+
+        // Tambahkan event listener ke setiap pertanyaan
+        document.querySelectorAll(".faq-question").forEach(question => {
+            question.addEventListener("click", () => {
+                const index = question.getAttribute("data-index");
+                const answerDiv = document.getElementById(`answer-${index}`);
+                const icon = question.querySelector("i");
+                // Toggle class show
+                answerDiv.classList.toggle("show");
+                // Ubah icon panah
+                if (answerDiv.classList.contains("show")) {
+                    icon.classList.remove("fa-chevron-down");
+                    icon.classList.add("fa-chevron-up");
+                } else {
+                    icon.classList.remove("fa-chevron-up");
+                    icon.classList.add("fa-chevron-down");
+                }
+            });
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        renderFaq();
+    });
+
+    // Load header & footer
+    fetch("Header/header.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("header").innerHTML = data)
+        .catch(err => console.error("Header gagal dimuat:", err));
+    
+    fetch("Footer/footer.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("footer").innerHTML = data)
+        .catch(err => console.error("Footer gagal dimuat:", err));
+    
+    document.addEventListener("contextmenu", e => e.preventDefault());
+</script>
+<script src="Header/header.js"></script>
+</body>
+</html>
