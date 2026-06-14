@@ -38,10 +38,6 @@
             font-size: 16px;
             box-sizing: border-box;
         }
-        .form-group input:read-only {
-            background: #1a1a1a;
-            cursor: not-allowed;
-        }
         .row-dua {
             display: flex;
             gap: 20px;
@@ -66,17 +62,15 @@
             width: 100%;
             transition: 0.3s;
         }
-        .btn-submit:hover {
-            background-color: #8a6b4c;
-        }
-        .info-gambar {
-            background: rgba(0,0,0,0.4);
-            border-radius: 16px;
-            padding: 12px 15px;
-            font-size: 13px;
-            color: #ffaa66;
+        .info-harga {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 20px;
             text-align: center;
             margin: 15px 0;
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--warna-utama);
         }
         @media (max-width: 768px) {
             .custom-form { padding: 20px; }
@@ -91,25 +85,19 @@
 <div class="container">
     <div class="page-header">
         <h1>Kustomisasi Desain</h1>
-        <p>Buat desain sablon sesuai keinginanmu. Isi form di bawah, lalu kirim ke WhatsApp kami.</p>
+        <p>Buat desain sablon sesuai keinginanmu. Harga akan dihitung otomatis.</p>
     </div>
 
     <div class="custom-form">
         <form id="customForm">
-            <!-- Kode Pesanan (auto generate) -->
-            <div class="form-group">
-                <label>Kode Pesanan (Otomatis)</label>
-                <input type="text" id="kodePesanan" readonly>
-            </div>
-
             <!-- Data diri -->
             <div class="form-group">
                 <label>Nama Lengkap <span style="color:#e07c3c;">*</span></label>
-                <input type="text" id="nama" required placeholder="Contoh: Smith Maulana">
+                <input type="text" id="nama" required placeholder="Contoh: Andi Prasetyo">
             </div>
             <div class="form-group">
                 <label>Nomor WhatsApp (untuk konfirmasi) <span style="color:#e07c3c;">*</span></label>
-                <input type="tel" id="nowa" required placeholder="081********">
+                <input type="tel" id="nowa" required placeholder="081234567890">
             </div>
 
             <hr>
@@ -117,76 +105,86 @@
             <h3 style="color: var(--warna-utama); text-align: center;">Detail Produk</h3>
 
             <div class="form-group">
-                <label>Jenis Produk <span style="color:#e07c3c;">*</span></label>
-                <select id="jenisProduk" required>
-                    <option value="">Pilih jenis produk</option>
-                    <option value="Kaos Oversize">Kaos Oversize</option>
-                    <option value="Kaos Regular">Kaos Regular</option>
+                <label>Jenis Kaos <span style="color:#e07c3c;">*</span></label>
+                <select id="jenisKaos" required>
+                    <option value="24s">Cotton Combed 24s (Rp 41.000)</option>
+                    <option value="30s">Cotton Combed 30s (Rp 36.000)</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label>Bahan <span style="color:#e07c3c;">*</span></label>
-                <select id="bahan" required>
-                    <option value="">Pilih bahan</option>
-                    <option value="Cotton Combed 30s">Cotton Combed 30s</option>
-                    <option value="Cotton Combed 24s">Cotton Combed 24s</option>
+                <label>Model Lengan <span style="color:#e07c3c;">*</span></label>
+                <select id="modelLengan" required>
+                    <option value="pendek">Lengan Pendek (Short Sleeve) - harga normal</option>
+                    <option value="panjang">Lengan Panjang (Long Sleeve) - tambah Rp 8.000</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label>Warna Produk</label>
-                <input type="text" id="warna" placeholder="Contoh: Hitam / Putih / Navy / Cream">
+                <label>Warna Kaos</label>
+                <input type="text" id="warnaKaos" placeholder="Contoh: Hitam, Putih, Navy">
             </div>
 
             <div class="form-group">
-                <label>Ukuran Baju</label>
-                <select id="ukuranBaju">
-                    <option value="">Pilih ukuran (opsional)</option>
-                    <option value="S (Small)">S (Small)</option>
-                    <option value="M (Medium)">M (Medium)</option>
-                    <option value="L (Large)">L (Large)</option>
-                    <option value="XL (Extra Large)">XL (Extra Large)</option>
-                    <option value="Custom (isi di catatan)">Custom (isi di catatan)</option>
+                <label>Ukuran Kaos</label>
+                <select id="ukuranKaos">
+                    <option value="">Pilih ukuran</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="2XL">2XL + Rp 5.000</option>
+                    <option value="3XL">3XL + Rp 11.000</option>
+                    <option value="4XL">4XL + Rp 17.000</option>
                 </select>
             </div>
 
             <hr>
 
-            <h3 style="color: var(--warna-utama); text-align: center;">Detail Sablon</h3>
+            <h3 style="color: var(--warna-utama); text-align: center;">Detail Sablon (Depan & Belakang)</h3>
 
             <div class="row-dua">
                 <div class="form-group">
-                    <label>Ukuran Sablon (Depan)</label>
-                    <input type="text" id="ukuranSablonDepan" placeholder="Contoh: 25x30 cm / Logo / Full Depan ">
+                    <label>Ukuran Sablon Depan</label>
+                    <select id="ukuranSablonDepan">
+                        <option value="none">Tidak ada sablon depan</option>
+                        <option value="Logo">Logo (Rp 10.000)</option>
+                        <option value="A5">A5 (Rp 15.000)</option>
+                        <option value="A4">A4 (Rp 25.000)</option>
+                        <option value="A3">A3 (Rp 35.000)</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label>Ukuran Sablon (Belakang)</label>
-                    <input type="text" id="ukuranSablonBelakang" placeholder="Contoh: 25x30 cm / A4 / A3">
+                    <label>Ukuran Sablon Belakang</label>
+                    <select id="ukuranSablonBelakang">
+                        <option value="none">Tidak ada sablon belakang</option>
+                        <option value="A5">A5 (Rp 15.000)</option>
+                        <option value="A4">A4 (Rp 25.000)</option>
+                        <option value="A3">A3 (Rp 35.000)</option>
+                    </select>
                 </div>
             </div>
 
             <div class="row-dua">
                 <div class="form-group">
-                    <label>Posisi Sablon (Depan)</label>
-                    <input type="text" id="posisiSablonDepan" placeholder="Contoh: Tengah dada / Dada Kiri ">
+                    <label>Posisi Sablon Depan</label>
+                    <input type="text" id="posisiDepan" placeholder="Contoh: Tengah dada, kiri atas">
                 </div>
                 <div class="form-group">
-                    <label>Posisi Sablon (Belakang)</label>
-                    <input type="text" id="posisiSablonBelakang" placeholder="Contoh: Punggung atas / Full Back">
+                    <label>Posisi Sablon Belakang</label>
+                    <input type="text" id="posisiBelakang" placeholder="Contoh: Punggung atas, tengah">
                 </div>
             </div>
+            <p>Note : Jika Ukuran Sablon Belakang A3 atau A4 maka Free Logo (Sablon Depan) <br> Total akan terpotong/discount otomatis</p>
+            
 
             <div class="form-group">
-                <label>Catatan Tambahan (opsional)</label>
-                <textarea id="catatan" placeholder="Detail ukuran custom, dll."></textarea>
+                <label>Catatan Tambahan (warna sablon, referensi, dll)</label>
+                <textarea id="catatan" rows="3"></textarea>
             </div>
 
-            <!-- Info pengiriman gambar via WA -->
-            <div class="info-gambar">
-                <i class="fab fa-whatsapp" style="margin-right: 8px;"></i>
-                <strong>Perhatian:</strong> Setelah mengirim formulir ini, mohon kirimkan <strong>gambar desain sablon</strong> Anda melalui WhatsApp ke nomor yang sama (admin akan membalas). Sertakan <strong>Kode Pesanan</strong> di atas agar tidak tertukar.
-            </div>
+            <!-- Info harga total -->
+            <div class="info-harga" id="totalHargaDisplay">Total: Rp 0</div>
 
             <button type="submit" class="btn-submit">Kirim Permintaan via WhatsApp</button>
         </form>
@@ -201,64 +199,149 @@
 <div id="footer"></div>
 
 <script>
-    // Generate kode pesanan otomatis (format: SMJ-YYMMDD-XXXX)
+    // ========== HARGA DASAR & TAMBAHAN ==========
+    const hargaKaos = { "24s": 41000, "30s": 36000 };
+    const tambahanLengan = { "pendek": 0, "panjang": 8000 };
+    const tambahanUkuran = {
+        "2XL": 5000,
+        "3XL": 11000,
+        "4XL": 17000
+    };
+    // Harga satuan sablon (sebelum diskon)
+    const hargaSablon = {
+        "Logo": 10000,
+        "A5": 15000,
+        "A4": 25000,
+        "A3": 35000,
+        "none": 0
+    };
+
+    // Fungsi hitung total dengan promo: jika sablon belakang A3/A4 dan sablon depan Logo, maka gratis (diskon 10000)
+    function hitungTotal() {
+        // Harga dasar kaos
+        const kaos = document.getElementById("jenisKaos").value;
+        let hargaDasar = hargaKaos[kaos] || 0;
+        
+        // Model lengan
+        const model = document.getElementById("modelLengan").value;
+        const hargaLengan = tambahanLengan[model] || 0;
+        
+        // Ukuran kaos (2XL,3XL,4XL)
+        const ukuran = document.getElementById("ukuranKaos").value;
+        const tambahanUkur = tambahanUkuran[ukuran] || 0;
+        
+        // Sablon depan dan belakang
+        const sablonDepan = document.getElementById("ukuranSablonDepan").value;
+        const sablonBelakang = document.getElementById("ukuranSablonBelakang").value;
+        
+        let biayaDepan = hargaSablon[sablonDepan] || 0;
+        let biayaBelakang = hargaSablon[sablonBelakang] || 0;
+        
+        // Promo: Jika sablon belakang adalah A3 atau A4 DAN sablon depan adalah Logo, maka sablon depan gratis
+        if ((sablonBelakang === "A3" || sablonBelakang === "A4") && sablonDepan === "Logo") {
+            biayaDepan = 0;  // diskon Rp10.000
+        }
+        
+        const total = hargaDasar + hargaLengan + tambahanUkur + biayaDepan + biayaBelakang;
+        document.getElementById("totalHargaDisplay").innerText = `Total: Rp ${total.toLocaleString()}`;
+        return total;
+    }
+
+    // Event listener untuk perubahan harga
+    document.getElementById("jenisKaos").addEventListener("change", hitungTotal);
+    document.getElementById("modelLengan").addEventListener("change", hitungTotal);
+    document.getElementById("ukuranKaos").addEventListener("change", hitungTotal);
+    document.getElementById("ukuranSablonDepan").addEventListener("change", hitungTotal);
+    document.getElementById("ukuranSablonBelakang").addEventListener("change", hitungTotal);
+
+    // Generate kode pesanan
     function generateOrderCode() {
         const now = new Date();
         const yy = now.getFullYear().toString().slice(-2);
         const mm = String(now.getMonth() + 1).padStart(2, '0');
         const dd = String(now.getDate()).padStart(2, '0');
         const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-        return `SMJ-${yy}${mm}${dd}-${random}`;
+        return `CUST-${yy}${mm}${dd}-${random}`;
     }
 
-    document.getElementById("kodePesanan").value = generateOrderCode();
-
+    // Submit form
     document.getElementById("customForm").addEventListener("submit", function(e) {
         e.preventDefault();
-
-        const kode = document.getElementById("kodePesanan").value;
+        
+        const kode = generateOrderCode();
         const nama = document.getElementById("nama").value.trim();
         const nowa = document.getElementById("nowa").value.trim();
-        const jenisProduk = document.getElementById("jenisProduk").value;
-        const bahan = document.getElementById("bahan").value;
-        const warna = document.getElementById("warna").value.trim();
-        const ukuranBaju = document.getElementById("ukuranBaju").value;
-        const ukuranSablonDepan = document.getElementById("ukuranSablonDepan").value.trim();
-        const ukuranSablonBelakang = document.getElementById("ukuranSablonBelakang").value.trim();
-        const posisiSablonDepan = document.getElementById("posisiSablonDepan").value.trim();
-        const posisiSablonBelakang = document.getElementById("posisiSablonBelakang").value.trim();
-        const catatan = document.getElementById("catatan").value.trim();
+        const jenisKaos = document.getElementById("jenisKaos").value === "24s" ? "Cotton Combed 24s" : "Cotton Combed 30s";
+        const modelLengan = document.getElementById("modelLengan").value === "pendek" ? "Lengan Pendek" : "Lengan Panjang (+Rp 8.000)";
+        const warnaKaos = document.getElementById("warnaKaos").value.trim();
         
-        if (!nama || !nowa || !jenisProduk || !bahan) {
-            alert("Mohon isi nama, nomor WhatsApp, jenis produk, dan bahan.");
+        let ukuranKaos = document.getElementById("ukuranKaos").value;
+        let ukuranTeks = ukuranKaos || "Tidak pilih";
+        if (ukuranKaos && tambahanUkuran[ukuranKaos]) {
+            ukuranTeks += ` (+Rp ${tambahanUkuran[ukuranKaos].toLocaleString()})`;
+        }
+        
+        const sablonDepan = document.getElementById("ukuranSablonDepan").value;
+        const sablonBelakang = document.getElementById("ukuranSablonBelakang").value;
+        
+        // Format teks untuk WA, termasuk info promo jika berlaku
+        let teksDepan = "";
+        if (sablonDepan === "none") teksDepan = "Tidak ada";
+        else if (sablonDepan === "Logo") {
+            // Cek apakah promo berlaku
+            if ((sablonBelakang === "A3" || sablonBelakang === "A4")) {
+                teksDepan = "Logo (GRATIS karena belakang A3/A4)";
+            } else {
+                teksDepan = "Logo (Rp 10.000)";
+            }
+        } else {
+            teksDepan = `${sablonDepan} (Rp ${hargaSablon[sablonDepan].toLocaleString()})`;
+        }
+        
+        let teksBelakang = "";
+        if (sablonBelakang === "none") teksBelakang = "Tidak ada";
+        else teksBelakang = `${sablonBelakang} (Rp ${hargaSablon[sablonBelakang].toLocaleString()})`;
+        
+        const posisiDepan = document.getElementById("posisiDepan").value.trim();
+        const posisiBelakang = document.getElementById("posisiBelakang").value.trim();
+        const catatan = document.getElementById("catatan").value.trim();
+        const totalHarga = hitungTotal();
+        
+        if (!nama || !nowa) {
+            alert("Mohon isi nama dan nomor WhatsApp.");
             return;
         }
-
+        
         let pesan = `*PERMINTAAN KUSTOMISASI SAMOJA*\n\n`;
         pesan += `Kode Pesanan: ${kode}\n`;
         pesan += `Nama: ${nama}\n`;
         pesan += `No. WhatsApp: ${nowa}\n\n`;
         pesan += `*Detail Produk:*\n`;
-        pesan += `▸ Jenis: ${jenisProduk}\n`;
-        pesan += `▸ Bahan: ${bahan}\n`;
-        pesan += `▸ Warna: ${warna || "(tidak diisi)"}\n`;
-        pesan += `▸ Ukuran Baju: ${ukuranBaju || "(tidak diisi)"}\n\n`;
+        pesan += `▸ Jenis Kaos: ${jenisKaos}\n`;
+        pesan += `▸ Model Lengan: ${modelLengan}\n`;
+        pesan += `▸ Warna Kaos: ${warnaKaos || "(tidak diisi)"}\n`;
+        pesan += `▸ Ukuran Kaos: ${ukuranTeks}\n\n`;
         pesan += `*Detail Sablon:*\n`;
-        pesan += `▸ Ukuran Depan: ${ukuranSablonDepan || "(tidak diisi)"}\n`;
-        pesan += `▸ Ukuran Belakang: ${ukuranSablonBelakang || "(tidak diisi)"}\n`;
-        pesan += `▸ Posisi Depan: ${posisiSablonDepan || "(tidak diisi)"}\n`;
-        pesan += `▸ Posisi Belakang: ${posisiSablonBelakang || "(tidak diisi)"}\n\n`;
+        pesan += `▸ Ukuran Depan: ${teksDepan}\n`;
+        pesan += `▸ Ukuran Belakang: ${teksBelakang}\n`;
+        pesan += `▸ Posisi Depan: ${posisiDepan || "(tidak diisi)"}\n`;
+        pesan += `▸ Posisi Belakang: ${posisiBelakang || "(tidak diisi)"}\n\n`;
         if (catatan) pesan += `*Catatan:* ${catatan}\n\n`;
-        pesan += `*Instruksi:* Kirimkan gambar desain sablon via WhatsApp ke nomor ini dengan menyertakan Kode Pesanan: ${kode}. Terima kasih.`;
-
+        pesan += `*Total Harga: Rp ${totalHarga.toLocaleString()}*\n\n`;
+        pesan += `Mohon kirimkan gambar referensi desain via WhatsApp. Terima kasih.`;
+        
         const adminWA = "6289512890115";
         const waUrl = `https://api.whatsapp.com/send?phone=${adminWA}&text=${encodeURIComponent(pesan)}`;
-        
         window.open(waUrl, "_blank");
     });
-
-    fetch("header.html").then(r => r.text()).then(d => document.getElementById("header").innerHTML = d).catch(e => console.error("Header error:", e));
-    fetch("footer.html").then(r => r.text()).then(d => document.getElementById("footer").innerHTML = d).catch(e => console.error("Footer error:", e));
+    
+    // Panggil hitungTotal saat halaman dimuat
+    window.addEventListener("DOMContentLoaded", function() {
+        hitungTotal();
+    });
+    
+    fetch("header.html").then(r=>r.text()).then(d=>document.getElementById("header").innerHTML=d).catch(e=>console.error);
+    fetch("footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d).catch(e=>console.error);
 </script>
 <script src="header.js"></script>
 </body>
